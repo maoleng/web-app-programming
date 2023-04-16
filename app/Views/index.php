@@ -1,3 +1,8 @@
 <h1>Trang chu</h1>
 
-<a href="<?= url('login') ?>">Login</a>
+
+<?php if (authed() === null) { ?>
+    <a href="<?= url('login') ?>">Login</a>
+<?php } else { ?>
+    <p>Hello <?= authed()->name ?></p>
+<?php } ?>

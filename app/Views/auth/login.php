@@ -1,5 +1,7 @@
 <h1>Login</h1>
 
+<?= showFirstError() ?>
+
 <form action="<?= url('/process_login') ?>" method="post">
     Email
     <input type="text" name="email">

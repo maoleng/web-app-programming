@@ -13,4 +13,8 @@ class Admin extends Model
         'name', 'email', 'password', 'created_at',
     ];
 
+    public function verify($password): bool
+    {
+        return password_verify($password, $this->password);
+    }
 }

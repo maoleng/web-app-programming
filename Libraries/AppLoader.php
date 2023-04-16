@@ -21,6 +21,7 @@ class AppLoader
 
     private function loadExternalHelpers(): void
     {
+        require_once asset('app/Helper.php');
         $this->loadFiles('app/Helpers');
     }
 
