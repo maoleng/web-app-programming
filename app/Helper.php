@@ -12,6 +12,13 @@ if (! function_exists('showFirstError')) {
     }
 }
 
+if (! function_exists('showSuccess')) {
+    function showSuccess()
+    {
+        return session()->get('success');
+    }
+}
+
 if (! function_exists('authed')) {
     function authed()
     {
@@ -28,3 +35,11 @@ if (! function_exists('redirectBackWithError')) {
     }
 }
 
+if (! function_exists('redirectBackWithSuccess')) {
+    function redirectBackWithSuccess(string $success)
+    {
+        session()->flash('success', $success);
+
+        redirect()->back();
+    }
+}

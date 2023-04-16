@@ -34,10 +34,23 @@ class AuthController extends Controller
         redirect()->route('/');
     }
 
-    public function processRegister(RegisterRequest $request)
+    public function processRegister(RegisterRequest $request): void
     {
         $data = $request->validated();
+        $user = (new User)->where('email', $data['email'])->first();
+        if ($user !== null) {
+            redirectBackWithError('Email already exists');
+        }
+        (new User())->create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'is_admin' => 0,
+            'created_at' => now()->format('Y-m-d H:i:s'),
+        ]);
+        session()->flash('success', 'Registered successfully');
 
+        redirect()->route('/');
     }
 
     public function logout(): void

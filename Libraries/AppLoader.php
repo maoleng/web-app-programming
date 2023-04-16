@@ -6,6 +6,7 @@ class AppLoader
 {
     public static function load(): void
     {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
         $loader = new self;
         $loader->loadAutoLoad();
         $loader->loadDatabaseDriver(env('DATABASE_DRIVER'));

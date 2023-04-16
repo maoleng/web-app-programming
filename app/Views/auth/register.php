@@ -1,5 +1,7 @@
 <h1>Register</h1>
 
+<?= showFirstError() ?>
+
 <form action="<?= url('/process_register') ?>" method="post">
     Name
     <input type="text" name="name">

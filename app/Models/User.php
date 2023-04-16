@@ -16,4 +16,9 @@ class User extends Model
     protected array $not_string_attributes = [
         'is_admin',
     ];
+
+    public function verify($password): bool
+    {
+        return password_verify($password, $this->password);
+    }
 }
