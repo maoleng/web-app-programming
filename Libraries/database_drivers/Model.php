@@ -63,7 +63,12 @@ abstract class Model
 
     public function paginate($per_page = 10): array
     {
-        $page = request()->get('page') ?? 1;
+        $page = (int) request()->get('page');
+        if ($page === 0) {
+            $page = 1;
+        } elseif ($page <= 0) {
+            $page = 1;
+        }
         $rows = $this->callPaginate($per_page, ($page - 1) * $per_page);
         $result = [];
         foreach ($rows as $row) {
@@ -76,7 +81,7 @@ abstract class Model
 
         return [
             'meta' => [
-                'current_page' => (int) $page,
+                'current_page' => $page,
                 'per_page' => count($result),
                 'last_page' => $last_page,
                 'first_page_url' => request()->url,

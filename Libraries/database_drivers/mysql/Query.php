@@ -110,7 +110,12 @@ class Query
 
     public function paginate($per_page = 10): array
     {
-        $page = request()->get('page') ?? 1;
+        $page = (int) request()->get('page');
+        if ($page === 0) {
+            $page = 1;
+        } elseif ($page <= 0) {
+            $page = 1;
+        }
         $rows = $this->callPaginate($per_page, ($page - 1) * $per_page);
         $result = [];
         foreach ($rows as $row) {
