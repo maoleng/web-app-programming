@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MovieController;
 use App\Http\Middlewares\IfAlreadyLogin;
 use Libraries\Redirect\Route;
 
@@ -11,3 +13,6 @@ Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlrea
 Route::post('/process_login', [AuthController::class, 'processLogin']);
 Route::post('/process_register', [AuthController::class, 'processRegister']);
 Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/admin', [DashboardController::class, 'index']);
+Route::get('/admin/movie', [MovieController::class, 'index']);
