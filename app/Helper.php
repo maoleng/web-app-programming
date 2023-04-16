@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Admin;
-
 if (! function_exists('showFirstError')) {
     function showFirstError()
     {
@@ -17,11 +15,7 @@ if (! function_exists('showFirstError')) {
 if (! function_exists('authed')) {
     function authed()
     {
-        $auth = session()->get('auth');
-        if ($auth !== null) {
-            $auth->is_admin = $auth instanceof Admin;
-        }
-        return $auth ?? null;
+        return session()->get('auth');
     }
 }
 

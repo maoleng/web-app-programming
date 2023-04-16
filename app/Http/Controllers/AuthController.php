@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\Admin;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -21,20 +22,21 @@ class AuthController extends Controller
     public function processLogin(LoginRequest $request): void
     {
         $data = $request->validated();
-        $admin = (new Admin)->where('email', $data['email'])->first();
-        if ($admin === null) {
+        $user = (new User)->where('email', $data['email'])->first();
+        if ($user === null) {
             redirectBackWithError('Wrong email address or password');
         }
-        if (! $admin->verify($data['password'])) {
+        if (! $user->verify($data['password'])) {
             redirectBackWithError('Wrong email address or password');
         }
-        session()->put('auth', $admin);
+        session()->put('auth', $user);
 
         redirect()->route('/');
     }
 
-    public function processRegister()
+    public function processRegister(RegisterRequest $request)
     {
+        $data = $request->validated();
 
     }
 
