@@ -65,6 +65,16 @@ trait Builder
         return $this->database()->query($query)->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function callPaginate($limit, $offset)
+    {
+        $query = 'SELECT * FROM '.$this->getTable();
+        $query .= $this->str_where ?? '';
+        $query .= $this->str_order_by ?? '';
+        $query .= ' LIMIT '.$limit.' OFFSET '.$offset;
+
+        return $this->database()->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function callOrderBy($column, $values, $model): Query
     {
         $query = new Query($model);

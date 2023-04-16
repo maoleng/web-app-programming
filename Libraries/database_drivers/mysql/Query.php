@@ -103,4 +103,19 @@ class Query
         return $result;
     }
 
+    public function paginate($per_page = 10): array
+    {
+        $page = request()->get('page') ?? 1;
+        $rows = $this->callPaginate($per_page, ($page - 1) * $per_page);
+
+        $result = [];
+        foreach ($rows as $row) {
+            $model = clone $this->model;
+            $model->setAttributes($model, $row);
+            $result[] = $model;
+        }
+
+        return $result;
+    }
+
 }
