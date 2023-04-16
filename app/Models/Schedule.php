@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Libraries\database_drivers\Model;
 
-class User extends Model
+class Schedule extends Model
 {
 
-    public string $table = 'users';
+    public string $table = 'schedules';
 
     protected array $fillable = [
-        'name', 'email', 'password', 'created_at',
+        'movie_id', 'started_at', 'ended_at',
     ];
 
 }

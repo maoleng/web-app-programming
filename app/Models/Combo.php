@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Libraries\database_drivers\Model;
 
-class User extends Model
+class Combo extends Model
 {
 
-    public string $table = 'users';
+    public string $table = 'combos';
 
     protected array $fillable = [
-        'name', 'email', 'password', 'created_at',
+        'name', 'price', 'image',
     ];
 
 }
