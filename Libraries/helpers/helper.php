@@ -18,6 +18,7 @@ if (! function_exists('view')) {
         foreach ($data as $key => $each) {
             ${$key} = $each;
         }
+        authed();
 
         return require($file_path);
     }

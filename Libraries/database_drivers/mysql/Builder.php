@@ -60,8 +60,25 @@ trait Builder
         }
         $query = 'SELECT '.$column.'FROM '.$this->getTable();
         $query .= $this->str_where ?? '';
+        $query .= $this->str_order_by ?? '';
 
         return $this->database()->query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function callOrderBy($column, $values, $model): Query
+    {
+        $query = new Query($model);
+        $query->orderBy($column, $values);
+
+        return $query;
+    }
+
+    public function callOrderByDesc($column, $model): Query
+    {
+        $query = new Query($model);
+        $query->orderBy($column, 'DESC');
+
+        return $query;
     }
 
     public function callWhere($column, $values, $model): Query

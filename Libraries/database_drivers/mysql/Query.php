@@ -11,11 +11,25 @@ class Query
 
     public Model $model;
     public string $str_where;
+    public string $str_order_by;
 
     public function __construct($model, $db = null)
     {
         $this->model = $model;
         $this->db = $db;
+    }
+
+    public function orderBy($column, $value): static
+    {
+        if (isset($this->str_order_by)) {
+            $add_query = ' , '.$column.' '.$value;
+            $this->str_order_by .= $add_query;
+        } else {
+            $query = ' ORDER BY '.$column.' '.$value;
+            $this->str_order_by = $query;
+        }
+
+        return $this;
     }
 
     public function where($column, $value): static

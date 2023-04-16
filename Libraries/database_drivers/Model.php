@@ -81,6 +81,20 @@ abstract class Model
         return $this;
     }
 
+    public function orderBy($column, $value = 'ASC'): Query
+    {
+        $this->validateFillable([$column]);
+
+        return $this->callOrderBy($column, $value, $this);
+    }
+
+    public function orderByDesc($column): Query
+    {
+        $this->validateFillable([$column]);
+
+        return $this->callOrderByDesc($column, $this);
+    }
+
     public function where($column, $value): Query
     {
         $this->validateFillable([$column]);
