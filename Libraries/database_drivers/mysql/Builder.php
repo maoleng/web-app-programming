@@ -65,6 +65,15 @@ trait Builder
         return $this->database()->query($query)->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function callCount(): int
+    {
+        $query = 'SELECT COUNT(*) FROM '.$this->getTable();
+        $query .= $this->str_where ?? '';
+        $query .= $this->str_order_by ?? '';
+
+        return (int) $this->database()->query($query)->fetch_row()[0];
+    }
+
     public function callPaginate($limit, $offset)
     {
         $query = 'SELECT * FROM '.$this->getTable();

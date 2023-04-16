@@ -103,6 +103,11 @@ class Query
         return $result;
     }
 
+    public function count(): int
+    {
+        return $this->callCount();
+    }
+
     public function paginate($per_page = 10): array
     {
         $page = request()->get('page') ?? 1;
