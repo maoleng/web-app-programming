@@ -69,7 +69,7 @@ class Session
      */
     public static function forget(string $key): void
     {
-        $flash_key = array_search($key, $_SESSION['_flash'], true);
+        $flash_key = array_search($key, $_SESSION['_flash'] ?? [], true);
         unset($_SESSION[$key], $_SESSION['_flash'][$flash_key]);
     }
 
