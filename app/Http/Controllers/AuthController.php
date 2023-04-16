@@ -38,6 +38,13 @@ class AuthController extends Controller
 
     }
 
+    public function logout(): void
+    {
+        session()->forget('auth');
+
+        redirect()->route('/');
+    }
+
 
 
 
