@@ -32,6 +32,13 @@ class Query
         return $this;
     }
 
+    public function orderByDesc($column): static
+    {
+        $this->orderBy($column, 'DESC');
+
+        return $this;
+    }
+
     public function where($column, $value): static
     {
         $value = cleanData($value);
