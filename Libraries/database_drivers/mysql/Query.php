@@ -19,7 +19,7 @@ class Query
         $this->db = $db;
     }
 
-    public function orderBy($column, $value): static
+    public function orderBy($column, $value = 'ASC'): static
     {
         if (isset($this->str_order_by)) {
             $add_query = ' , '.$column.' '.$value;
