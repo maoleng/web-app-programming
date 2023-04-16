@@ -32,7 +32,7 @@ if (! function_exists('section')) {
             throwHttpException("VIEW $view_name NOT EXISTS");
         }
 
-        echo require($file_path);
+        require_once $file_path;
     }
 }
 
