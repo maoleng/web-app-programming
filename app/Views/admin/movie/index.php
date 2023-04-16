@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
-<?php section('admin-theme.head_tag') ?>
+<?php view('admin-theme.head_tag') ?>
 <body>
 <div class="wrapper">
-    <?php section('admin-theme.side_bar') ?>
+    <?php view('admin-theme.side_bar') ?>
     <div class="main-panel">
-        <?php section('admin-theme.header') ?>
+        <?php view('admin-theme.header', ['title' => 'Manage Movie']) ?>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -395,11 +395,11 @@
                 </div>
             </div>
         </div>
-        <?php section('admin-theme.footer') ?>
+        <?php view('admin-theme.footer') ?>
     </div>
 </div>
 </body>
 
-<?php section('admin-theme.script') ?>
+<?php view('admin-theme.script') ?>
 
 

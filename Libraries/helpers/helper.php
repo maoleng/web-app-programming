@@ -23,19 +23,6 @@ if (! function_exists('view')) {
     }
 }
 
-if (! function_exists('section')) {
-    function section($view_name)
-    {
-        $path = str_replace('.', '/', $view_name);
-        $file_path = asset('/app/Views/'.$path.'.php');
-        if (!file_exists($file_path)) {
-            throwHttpException("VIEW $view_name NOT EXISTS");
-        }
-
-        require_once $file_path;
-    }
-}
-
 if (! function_exists('env')) {
     function env($key): string
     {
