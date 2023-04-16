@@ -65,15 +65,28 @@ abstract class Model
     {
         $page = request()->get('page') ?? 1;
         $rows = $this->callPaginate($per_page, ($page - 1) * $per_page);
-
         $result = [];
         foreach ($rows as $row) {
             $model = clone $this;
             $model->setAttributes($model, $row);
             $result[] = $model;
         }
+        $total = $this->count();
+        $last_page = (int) ceil($total / $per_page);
 
-        return $result;
+        return [
+            'meta' => [
+                'current_page' => (int) $page,
+                'per_page' => count($result),
+                'last_page' => $last_page,
+                'first_page_url' => request()->url,
+                'last_page_url' => request()->url.'?page='.$last_page,
+                'next_page_url' => request()->url.'?page='.($page + 1),
+                'prev_page_url' => request()->url.'?page='.($page - 1),
+                'total' => $total,
+            ],
+            'data' => $result,
+        ];
     }
 
     public function save(): static
