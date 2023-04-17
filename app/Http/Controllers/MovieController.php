@@ -29,10 +29,7 @@ class MovieController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $movie = (new Movie)->find($id);
-        if ($movie === null) {
-            abort(404);
-        }
+        $movie = (new Movie)->findOrFail($id);
         $categories = $movie->getCategories();
 
         return view('admin.movie.edit', [
@@ -67,10 +64,7 @@ class MovieController extends Controller
 
     public function update(MovieRequest $request, $id): void
     {
-        $movie = (new Movie)->find($id);
-        if ($movie === null) {
-            abort(404);
-        }
+        $movie = (new Movie)->findOrFail($id);
 
         $data = $request->validated();
         $update_data = [
@@ -94,6 +88,16 @@ class MovieController extends Controller
         $movie->update($update_data);
 
         redirectWithSuccess('/admin/movie', 'Updated movie successfully');
+    }
+
+    public function destroy(Request $request, $id): void
+    {
+        $movie = (new Movie)->findOrFail($id);
+
+        $movie->delete();
+        unlink($movie->banner);
+
+        redirectWithSuccess('/admin/movie', 'Removed movie successfully');
     }
 
 }

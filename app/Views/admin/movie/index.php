@@ -57,9 +57,11 @@
                                             <a href="<?= url('admin/movie/edit/').$movie->id ?>" type="button" rel="tooltip" class="btn btn-success">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <a type="button" rel="tooltip" class="btn btn-danger">
-                                                <i class="material-icons">close</i>
-                                            </a>
+                                            <form action="<?= url('admin/movie/destroy/').$movie->id ?>" style="display: inline" method="post">
+                                                <button class="btn-delete btn btn-danger" type="button" rel="tooltip">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php endforeach ?>
@@ -90,6 +92,21 @@
 <?php view('admin-theme.script') ?>
 <script>
     <?= alertSuccess() ?>
+    $('.btn-delete').on('click', function(e) {
+        const form = $(this).parent()
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+        }).then(function() {
+            form.submit()
+        })
+    })
 </script>
 </body>
 
