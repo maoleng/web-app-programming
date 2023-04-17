@@ -33,15 +33,15 @@
                 </a>
             </li>
             <li class="active">
-                <a href="../dashboard.html">
+                <a href="<?= url('admin/movie') ?>">
                     <i class="material-icons">dashboard</i>
                     <p> Movie </p>
                 </a>
             </li>
             <li>
-                <a href="../dashboard.html">
+                <a href="<?= url('admin/customer') ?>">
                     <i class="material-icons">dashboard</i>
-                    <p> User </p>
+                    <p> Customer </p>
                 </a>
             </li>
             <li>

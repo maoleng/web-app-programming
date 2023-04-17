@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
@@ -22,3 +23,5 @@ Route::post('/admin/movie/store', [MovieController::class, 'store']);
 Route::get('/admin/movie/edit/{id}', [MovieController::class, 'edit']);
 Route::post('/admin/movie/update/{id}', [MovieController::class, 'update']);
 Route::post('/admin/movie/destroy/{id}', [MovieController::class, 'destroy']);
+
+Route::get('/admin/customer', [CustomerController::class, 'index']);
