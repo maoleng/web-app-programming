@@ -32,6 +32,16 @@ abstract class Model
         return $this;
     }
 
+    public function findOrFail($id): static
+    {
+        $data = $this->find($id);
+        if ($data === null) {
+            abort(404);
+        }
+
+        return $data;
+    }
+
     public function first(): static|null
     {
         $data = $this->callFirst();

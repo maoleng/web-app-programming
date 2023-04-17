@@ -90,6 +90,16 @@ class Query
         return $this->model;
     }
 
+    public function findOrFail($id): Model
+    {
+        $data = $this->find($id);
+        if ($data === null) {
+            abort(404);
+        }
+
+        return $data;
+    }
+
     public function get($column = []): array
     {
         $result = [];
