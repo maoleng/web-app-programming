@@ -41,7 +41,7 @@
                                         <tr>
                                         <td>
                                             <div class="img-container">
-                                                <img src="<?= $movie->banner ?>" alt="...">
+                                                <img src="<?= $movie->bannerPath() ?>" alt="...">
                                             </div>
                                         </td>
                                         <td class="td-name">
@@ -91,6 +91,9 @@
     </div>
 </div>
 <?php view('admin-theme.script') ?>
+<script>
+    <?= alertSuccess() ?>
+</script>
 </body>
 
 

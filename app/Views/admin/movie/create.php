@@ -143,9 +143,7 @@
 </div>
 <?php view('admin-theme.script') ?>
 <script>
-    $(document).ready(function() {
-        <?= alertError() ?>
-    })
+    <?= alertError() ?>
 </script>
 </body>
 

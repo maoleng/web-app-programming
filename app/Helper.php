@@ -32,6 +32,27 @@ if (! function_exists('alertError')) {
     }
 }
 
+
+if (! function_exists('alertSuccess')) {
+    function alertSuccess(): string
+    {
+        $success = session()->get('success');
+        if (! empty($success)) {
+            return "
+                swal({
+                    title: 'Successfully !',
+                    text: '$success',
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-success',
+                    type: 'success'
+                })
+            ";
+        }
+
+        return '';
+    }
+}
+
 if (! function_exists('showSuccess')) {
     function showSuccess()
     {
@@ -55,11 +76,11 @@ if (! function_exists('redirectBackWithError')) {
     }
 }
 
-if (! function_exists('redirectBackWithSuccess')) {
-    function redirectBackWithSuccess(string $success)
+if (! function_exists('redirectWithSuccess')) {
+    function redirectWithSuccess(string $route, string $message)
     {
-        session()->flash('success', $success);
+        session()->flash('success', $message);
 
-        redirect()->back();
+        redirect()->route($route);
     }
 }
