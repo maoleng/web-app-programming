@@ -27,7 +27,21 @@ class MovieController extends Controller
         ]);
     }
 
-    public function store(StoreRequest $request)
+    public function edit(Request $request, $id)
+    {
+        $movie = (new Movie)->find($id);
+        if ($movie === null) {
+            abort(404);
+        }
+        $categories = $movie->getCategories();
+
+        return view('admin.movie.edit', [
+            'movie' => $movie,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function store(StoreRequest $request): void
     {
         $data = $request->validated();
         $movie = (new Movie)->create([

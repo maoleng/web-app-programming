@@ -54,15 +54,12 @@
                                         <td><?= $movie->premiered_date ?></td>
                                         <td><?= $movie->created_at ?></td>
                                         <td class="td-actions text-right">
-                                            <button type="button" rel="tooltip" class="btn btn-info">
-                                                <i class="material-icons">person</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-success">
+                                            <a href="<?= url('admin/movie/edit/').$movie->id ?>" type="button" rel="tooltip" class="btn btn-success">
                                                 <i class="material-icons">edit</i>
-                                            </button>
-                                            <button type="button" rel="tooltip" class="btn btn-danger">
+                                            </a>
+                                            <a type="button" rel="tooltip" class="btn btn-danger">
                                                 <i class="material-icons">close</i>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php endforeach ?>

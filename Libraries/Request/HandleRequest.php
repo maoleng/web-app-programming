@@ -26,9 +26,8 @@ trait HandleRequest
             foreach ($arr_keys as $arr_key) {
                 if (str_starts_with($arr_key, $url_optional['str_starts_with'])) {
                     preg_match('/\/{[a-z]+}/', $arr_key, $match);
-                    $optional_key = substr($match[0], 2, -1);
                     $key = $url_optional['no_optional_url'].$match[0];
-                    $this->$optional_key = $url_optional['optional_value'];
+                    $optional_value = $url_optional['optional_value'];
                 }
             }
             // Nếu trường hợp tùy chọn vẫn không thỏa mãn thì trả về lỗi
@@ -39,7 +38,7 @@ trait HandleRequest
 
         // Nếu action là 1 Closure
         if ($routes[$key] instanceof Closure) {
-            return $this->handleAction($routes[$key]);
+            return $this->handleAction($routes[$key], $optional_value ?? null);
         }
 
         // Nếu action là 1 hàm của Controller
@@ -64,10 +63,10 @@ trait HandleRequest
             $middleware->handle();
         }
 
-        return $this->handleAction([$class, $method_name]);
+        return $this->handleAction([$class, $method_name], $optional_value ?? null);
     }
 
-    private function handleAction($function)
+    private function handleAction($function, $optional_value = null)
     {
         $action = $function instanceof Closure ?
             (new ReflectionFunction($function)) :
@@ -81,8 +80,8 @@ trait HandleRequest
 
         try {
             return $function instanceof Closure ?
-                $function($request ?? $this) :
-                $function[0]->{$function[1]}($request ?? $this);
+                $function($request ?? $this, $optional_value) :
+                $function[0]->{$function[1]}($request ?? $this, $optional_value);
         } catch (Throwable|Exception $e) {
             $message = $e->getMessage();
             $file = $e->getFile();

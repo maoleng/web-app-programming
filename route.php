@@ -19,3 +19,4 @@ Route::get('/admin', [DashboardController::class, 'index']);
 Route::get('/admin/movie', [MovieController::class, 'index']);
 Route::get('/admin/movie/create', [MovieController::class, 'create']);
 Route::post('/admin/movie/store', [MovieController::class, 'store']);
+Route::get('/admin/movie/edit/{id}', [MovieController::class, 'edit']);

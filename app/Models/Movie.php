@@ -19,7 +19,7 @@ class Movie extends Model
         return Str::limit($this->name, 20);
     }
 
-    public function bannerPath()
+    public function bannerPath(): string
     {
         return str_starts_with($this->banner, 'http') ? $this->banner : url($this->banner);
     }

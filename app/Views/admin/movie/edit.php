@@ -1,5 +1,3 @@
-<?php $old = session()->get('old') ?>
-
 <!doctype html>
 <html lang="en">
 <?php view('admin-theme.head_tag') ?>
@@ -16,19 +14,19 @@
                         <div class="card-header card-header-icon" data-background-color="rose">
                             <i class="material-icons">assignment</i>
                         </div>
-                        <form method="post" action="<?= url('/admin/movie/store') ?>" enctype="multipart/form-data" class="form-horizontal">
+                        <form method="post" action="<?= url('admin/movie/update/').$movie->id ?>" enctype="multipart/form-data" class="form-horizontal">
                             <div class="card-content">
                                 <h4 class="card-title">
                                     <a href="<?= url('admin/movie') ?>">Manage Movie</a>
                                     >
-                                    <a href="<?= url('admin/movie/create') ?>">Add Movie</a>
+                                    <a href="<?= url('admin/movie/edit/').$movie->id ?>">Edit Movie</a>
                                 </h4>
                                 <div class="row">
                                     <label class="col-sm-2 label-on-left">Name</label>
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="name" value="<?= $old['name'] ?? null ?>" type="text" class="form-control">
+                                            <input name="name" value="<?= $movie->name ?>" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -37,7 +35,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="description" value="<?= $old['description'] ?? null ?>" type="text" class="form-control">
+                                            <input name="description" value="<?= $movie->description ?>" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +44,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="duration" value="<?= $old['duration'] ?? null ?>" type="number" class="form-control" placeholder="minutes">
+                                            <input name="duration" value="<?= $movie->duration ?>" type="number" class="form-control" placeholder="minutes">
                                             <span class="material-input"></span>
                                         </div>
                                     </div>
@@ -56,7 +54,7 @@
                                             <label class="control-label"></label>
                                             <select name="category" class="selectpicker" data-style="select-with-transition" title="Choose Category" data-size="7">
                                                 <?php foreach ($categories as $key => $category) : ?>
-                                                    <option <?= ((string) $key === ($old['category'] ?? null)) ? 'selected' : '' ?> value="<?= $key ?>">
+                                                    <option <?= ((string) $key === ($movie->category)) ? 'selected' : '' ?> value="<?= $key ?>">
                                                         <?= $category ?>
                                                     </option>
                                                 <?php endforeach ?>
@@ -69,7 +67,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="actors" value="<?= $old['actors'] ?? null ?>" type="text" class="form-control" placeholder="Robert Kirkman, Chris McKay, ...">
+                                            <input name="actors" value="<?= $movie->actors ?>" type="text" class="form-control" placeholder="Robert Kirkman, Chris McKay, ...">
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +76,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="directors" value="<?= $old['directors'] ?? null ?>" type="text" class="form-control" placeholder="Nicolas Cage, Nicholas Hoult, Awkwafina, Ben Schwartz, ...">
+                                            <input name="directors" value="<?= $movie->directors ?>" type="text" class="form-control" placeholder="Nicolas Cage, Nicholas Hoult, Awkwafina, Ben Schwartz, ...">
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +85,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group">
                                             <label class="control-label"></label>
-                                            <input name="premiered_date" value="<?= $old['premiered_date'] ?? null ?>" type="text" class="form-control datepicker" placeholder="<?= now()->format('Y-m-d') ?>">
+                                            <input name="premiered_date" value="<?= $movie->premiered_date ?>" type="text" class="form-control datepicker" placeholder="<?= now()->format('Y-m-d') ?>">
                                             <div id="sliderRegular" class="hidden"></div>
                                             <div id="sliderDouble" class="hidden"></div>
                                         </div>
@@ -98,7 +96,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="trailer" value="<?= $old['trailer'] ?? null ?>" type="text" class="form-control" placeholder="https://www.youtube.com/watch?v=PbasE68lqA4">
+                                            <input name="trailer" value="<?= $movie->trailer ?>" type="text" class="form-control" placeholder="https://www.youtube.com/watch?v=PbasE68lqA4">
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +105,7 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
-                                                <img src="<?= url('public/assets/img/image_placeholder.jpg') ?>" alt="...">
+                                                <img src="<?= $movie->bannerPath() ?>" alt="...">
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                             <div>
