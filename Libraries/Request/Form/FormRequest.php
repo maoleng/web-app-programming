@@ -13,6 +13,7 @@ abstract class FormRequest extends Request
     {
         parent::__construct();
         $this->data = $this->only(array_keys($this->rules()));
+        session()->flash('old', $this->data);
     }
 
     public function validated(): array

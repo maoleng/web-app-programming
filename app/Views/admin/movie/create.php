@@ -1,12 +1,16 @@
+<?php $old = session()->get('old') ?>
+
 <!doctype html>
 <html lang="en">
 <?php view('admin-theme.head_tag') ?>
 <body>
 <div class="wrapper">
+
     <?php view('admin-theme.side_bar') ?>
     <div class="main-panel">
         <?php view('admin-theme.header') ?>
         <div class="content">
+            <button id="oke" class="btn btn-rose btn-fill">Try me!</button>
             <div class="container-fluid">
                 <div class="col-md-12">
                     <div class="card">
@@ -25,7 +29,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="name" type="text" class="form-control">
+                                            <input name="name" value="<?= $old['name'] ?? null ?>" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +38,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="description" type="text" class="form-control">
+                                            <input name="description" value="<?= $old['description'] ?? null ?>" type="text" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +47,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="duration" type="number" class="form-control" placeholder="minutes">
+                                            <input name="duration" value="<?= $old['duration'] ?? null ?>" type="number" class="form-control" placeholder="minutes">
                                             <span class="material-input"></span>
                                         </div>
                                     </div>
@@ -52,7 +56,11 @@
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
                                             <select name="category" class="selectpicker" data-style="select-with-transition" title="Choose Category" data-size="7">
-                                                <option value="2">Paris </option>
+                                                <?php foreach ($categories as $key => $category) : ?>
+                                                    <option <?= ((string) $key === ($old['category'] ?? null)) ? 'selected' : '' ?> value="<?= $key ?>">
+                                                        <?= $category ?>
+                                                    </option>
+                                                <?php endforeach ?>
                                             </select>
                                         </div>
                                     </div>
@@ -62,7 +70,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="actors" type="text" class="form-control" placeholder="Robert Kirkman, Chris McKay, ...">
+                                            <input name="actors" value="<?= $old['actors'] ?? null ?>" type="text" class="form-control" placeholder="Robert Kirkman, Chris McKay, ...">
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +79,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="directors" type="text" class="form-control" placeholder="Nicolas Cage, Nicholas Hoult, Awkwafina, Ben Schwartz, ...">
+                                            <input name="directors" value="<?= $old['directors'] ?? null ?>" type="text" class="form-control" placeholder="Nicolas Cage, Nicholas Hoult, Awkwafina, Ben Schwartz, ...">
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +88,7 @@
                                     <div class="col-sm-10">
                                         <div class="form-group">
                                             <label class="control-label"></label>
-                                            <input name="premiered_at" type="text" class="form-control datepicker" placeholder="<?= now()->format('Y-m-d') ?>">
+                                            <input name="premiered_date" value="<?= $old['premiered_date'] ?? null ?>" type="text" class="form-control datepicker" placeholder="<?= now()->format('Y-m-d') ?>">
                                             <div id="sliderRegular" class="hidden"></div>
                                             <div id="sliderDouble" class="hidden"></div>
                                         </div>
@@ -91,12 +99,12 @@
                                     <div class="col-sm-10">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            <input name="trailer" type="text" class="form-control" placeholder="https://www.youtube.com/watch?v=PbasE68lqA4">
+                                            <input name="trailer" value="<?= $old['trailer'] ?? null ?>" type="text" class="form-control" placeholder="https://www.youtube.com/watch?v=PbasE68lqA4">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row" style="padding-top: 25px">
-                                    <label class="col-sm-2 label-on-left">Trailer</label>
+                                    <label class="col-sm-2 label-on-left">Banner</label>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
@@ -134,6 +142,11 @@
     </div>
 </div>
 <?php view('admin-theme.script') ?>
+<script>
+    $(document).ready(function() {
+        <?= alertError() ?>
+    })
+</script>
 </body>
 
 </html>

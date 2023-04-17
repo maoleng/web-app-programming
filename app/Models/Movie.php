@@ -14,14 +14,19 @@ class Movie extends Model
         'name', 'description', 'duration', 'directors', 'actors', 'category', 'premiered_date', 'banner', 'trailer', 'created_at',
     ];
 
-    public function limitName()
+    public function limitName(): string
     {
         return Str::limit($this->name, 20);
     }
 
-    public function prettyCategory()
+    public function prettyCategory(): string
     {
-        return match($this->category) {
+        return $this->getCategories()[$this->category];
+    }
+
+    public function getCategories(): array
+    {
+        return [
             '1' => 'Action',
             '2' => 'Comedy',
             '3' => 'Drama',
@@ -31,6 +36,6 @@ class Movie extends Model
             '7' => 'Romance',
             '8' => 'Thriller',
             '9' => 'Western',
-        };
+        ];
     }
 }

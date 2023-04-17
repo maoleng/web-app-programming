@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Movie\StoreRequest;
 use App\Models\Movie;
 use Libraries\Request\Request;
 
@@ -19,12 +20,16 @@ class MovieController extends Controller
 
     public function create()
     {
-        return view('admin.movie.create');
+        $categories = (new Movie)->getCategories();
+
+        return view('admin.movie.create', [
+            'categories' => $categories,
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        
+        dd($request->validated());
     }
 
 }

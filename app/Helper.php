@@ -12,6 +12,26 @@ if (! function_exists('showFirstError')) {
     }
 }
 
+if (! function_exists('alertError')) {
+    function alertError(): string
+    {
+        $errors = session()->get('errors');
+        if (! empty($errors)) {
+            return "
+                swal({
+                    title: 'Error !',
+                    text: '$errors[0]',
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-warning',
+                    type: 'warning'
+                })
+            ";
+        }
+
+        return '';
+    }
+}
+
 if (! function_exists('showSuccess')) {
     function showSuccess()
     {
