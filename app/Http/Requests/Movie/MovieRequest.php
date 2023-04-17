@@ -4,11 +4,13 @@ namespace App\Http\Requests\Movie;
 
 use Libraries\Request\Form\FormRequest;
 
-class StoreRequest extends FormRequest
+class MovieRequest extends FormRequest
 {
 
     public function rules()
     {
+        $is_update = str_contains($this->url, 'update');
+
         return [
             'name' => function ($value) {
                 if ($value === '') {
@@ -45,9 +47,13 @@ class StoreRequest extends FormRequest
                     return $this->fail('Premiere date can not be empty');
                 }
             },
-            'banner' => function ($value) {
+            'banner' => function ($value) use ($is_update) {
                 if ($value['error'] === 4) {
-                    return $this->fail('Banner can not be empty');
+                    if ($is_update) {
+                        $this->merge(['banner' => null]);
+                    } else {
+                        return $this->fail('Banner can not be empty');
+                    }
                 }
             },
             'trailer' => function ($value) {

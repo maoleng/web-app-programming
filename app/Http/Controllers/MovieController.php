@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Movie\StoreRequest;
+use App\Http\Requests\Movie\MovieRequest;
 use App\Models\Movie;
 use Libraries\Request\Request;
 
@@ -41,7 +41,7 @@ class MovieController extends Controller
         ]);
     }
 
-    public function store(StoreRequest $request): void
+    public function store(MovieRequest $request): void
     {
         $data = $request->validated();
         $movie = (new Movie)->create([
@@ -63,6 +63,37 @@ class MovieController extends Controller
         $movie->update(['banner' => $path]);
 
         redirectWithSuccess('/admin/movie', 'Created movie successfully');
+    }
+
+    public function update(MovieRequest $request, $id): void
+    {
+        $movie = (new Movie)->find($id);
+        if ($movie === null) {
+            abort(404);
+        }
+
+        $data = $request->validated();
+        $update_data = [
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'duration' => $data['duration'],
+            'directors' => $data['directors'],
+            'actors' => $data['actors'],
+            'category' => $data['category'],
+            'premiered_date' => $data['premiered_date'],
+            'trailer' => $data['trailer'],
+        ];
+
+        if ($data['banner'] !== null) {
+            unlink($movie->banner);
+            $extension = pathinfo(basename($data['banner']['name']),PATHINFO_EXTENSION);
+            $path = "public/storage/movies/$movie->id.$extension";
+            move_uploaded_file($data['banner']['tmp_name'], $path);
+            $update_data['banner'] = $path;
+        }
+        $movie->update($update_data);
+
+        redirectWithSuccess('/admin/movie', 'Updated movie successfully');
     }
 
 }
