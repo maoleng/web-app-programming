@@ -15,4 +15,7 @@ Route::post('/process_register', [AuthController::class, 'processRegister']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/admin', [DashboardController::class, 'index']);
+
 Route::get('/admin/movie', [MovieController::class, 'index']);
+Route::get('/admin/movie/create', [MovieController::class, 'create']);
+Route::post('/admin/movie/store', [MovieController::class, 'store']);

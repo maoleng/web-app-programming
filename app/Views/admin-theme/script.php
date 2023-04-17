@@ -41,3 +41,10 @@
 <script src="<?= url('assets/js/material-dashboard.js') ?>"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?= url('assets/js/demo.js') ?>"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        md.initSliders()
+        demo.initFormExtendedDatetimepickers();
+    });
+</script>

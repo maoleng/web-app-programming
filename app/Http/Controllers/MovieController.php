@@ -16,4 +16,15 @@ class MovieController extends Controller
             'movies' => $movies,
         ]);
     }
+
+    public function create()
+    {
+        return view('admin.movie.create');
+    }
+
+    public function store(Request $request)
+    {
+        
+    }
+
 }

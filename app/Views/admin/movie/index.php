@@ -14,9 +14,11 @@
                             <i class="material-icons">assignment</i>
                         </div>
                         <div class="card-content">
-                            <h4 class="card-title">Manage Movie</h4>
+                            <h4 class="card-title">
+                                <a href="<?= url('admin/movie') ?>">Manage Movie</a>
+                            </h4>
                             <div class="table-responsive">
-                                <a class="btn btn-primary">Add new movie<div class="ripple-container"></div></a>
+                                <a href="<?= url('admin/movie/create') ?>" class="btn btn-primary">Add new movie<div class="ripple-container"></div></a>
                                 <div style="float:right;width:200px!important"  role="search">
                                     <input type="text" class="form-control" placeholder=" Search ">
                                     <span class="material-input"></span>
@@ -88,8 +90,9 @@
         <?php view('admin-theme.footer') ?>
     </div>
 </div>
+<?php view('admin-theme.script') ?>
 </body>
 
-<?php view('admin-theme.script') ?>
 
 
+</html>
