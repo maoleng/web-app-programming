@@ -7,11 +7,11 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="<?= url('assets/css/bootstrap.min.css') ?>" rel="stylesheet" />
+    <link href="<?= url('public/assets/css/bootstrap.min.css') ?>" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="<?= url('assets/css/material-dashboard.css') ?>" rel="stylesheet" />
+    <link href="<?= url('public/assets/css/material-dashboard.css') ?>" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="<?= url('assets/css/demo.css') ?>" rel="stylesheet" />
+    <link href="<?= url('public/assets/css/demo.css') ?>" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
