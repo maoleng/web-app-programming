@@ -10,11 +10,6 @@ trait BaseBuilder
 {
     use Builder;
 
-    public function raw($sql)
-    {
-        return $this->callRaw($sql);
-    }
-
     public function update($data): bool
     {
         return $this->callUpdate($data);

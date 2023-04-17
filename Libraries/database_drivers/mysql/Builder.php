@@ -74,9 +74,8 @@ trait Builder
         return (int) $this->database()->query($query)->fetch_row()[0];
     }
 
-    public function callPaginate($limit, $offset)
+    public function callPaginate($query, $limit, $offset)
     {
-        $query = 'SELECT * FROM '.$this->getTable();
         $query .= $this->str_where ?? '';
         $query .= $this->str_order_by ?? '';
         $query .= ' LIMIT '.$limit.' OFFSET '.$offset;
@@ -171,11 +170,7 @@ trait Builder
 
     public function callRaw($sql)
     {
-        if (str_starts_with($sql, 'SELECT')) {
-            return $this->database()->query($sql)->fetch_all(MYSQLI_ASSOC);
-        }
-
-        return $this->database()->query($sql);
+        return $this->database()->query($sql)->fetch_all(MYSQLI_ASSOC);
     }
 
     public function setAttributes($model, $data): void
