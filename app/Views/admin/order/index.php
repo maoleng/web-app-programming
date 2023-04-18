@@ -57,7 +57,7 @@
                                         <td class="td-name"><?= $order->name ?></td>
                                         <td><?= $order->email ?></td>
                                         <td>
-                                            <span data-href="<?= url('admin/order/update_payment')."?id=$order->id" ?>" class="checkbox btn-update_payment">
+                                            <span data-href="<?= url('admin/order/update_payment')."?id=$order->id" ?>" class="checkbox btn-update_payment <?= (int) $order->is_paid ? 'disabled' : '' ?> ">
                                                 <label>
                                                     <input <?= (int) $order->is_paid ? 'checked disabled' : '' ?> type="checkbox">
                                                 </label>
@@ -112,7 +112,9 @@
 <script>
     <?= alertSuccess() ?>
     $('.btn-update_payment').on('click', function () {
-        window.location.href = $(this).data('href')
+        if (! $(this).hasClass('disabled')) {
+            window.location.href = $(this).data('href')
+        }
     })
 </script>
 </body>
