@@ -14,31 +14,30 @@
                             <i class="material-icons">assignment</i>
                         </div>
                         <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="<?= url('admin/order') ?>">Manage Order</a>
-                            </h4>
-                            <div class="table-responsive">
-                                <div class="row">
-                                    <div class="col-sm-6 col-lg-2" style="float: right">
-                                        <input type="text" class="form-control" placeholder=" Search ">
-                                        <span class="material-input"></span>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-2" style="float: right">
-                                        <a href="" class="dropdown-toggle btn btn-primary btn-round" data-toggle="dropdown">Dropdown
-                                            <b class="caret"></b>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-left">
-                                            <?php foreach ($status as $key => $each) : ?>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-2" style="float: right">
+                                    <input type="text" class="form-control" placeholder=" Search ">
+                                    <span class="material-input"></span>
+                                </div>
+                                <div class="col-sm-6 col-lg-2" style="float: right">
+                                    <a href="" class="dropdown-toggle btn btn-primary btn-round" data-toggle="dropdown">Dropdown
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-left">
+                                        <?php foreach ($status as $key => $each) : ?>
                                             <li>
                                                 <a href="">
                                                     <?= $each ?>
                                                 </a>
                                             </li>
-                                            <?php endforeach ?>
-                                        </ul>
-                                    </div>
+                                        <?php endforeach ?>
+                                    </ul>
                                 </div>
-
+                            </div>
+                            <h4 class="card-title">
+                                <a href="<?= url('admin/order') ?>">Manage Order</a>
+                            </h4>
+                            <div class="table-responsive">
                                 <table class="table table-shopping">
                                     <thead>
                                     <tr>
@@ -58,11 +57,11 @@
                                         <td class="td-name"><?= $order->name ?></td>
                                         <td><?= $order->email ?></td>
                                         <td>
-                                            <div class="checkbox">
+                                            <a href="<?= url('admin/order/update_payment')."?id=$order->id" ?>" class="checkbox">
                                                 <label>
                                                     <input <?= (int) $order->is_paid ? 'checked' : '' ?> type="checkbox">
                                                 </label>
-                                            </div>
+                                            </a>
                                         </td>
                                         <td>
                                             <div class="form-group label-floating is-empty">

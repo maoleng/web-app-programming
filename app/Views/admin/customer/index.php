@@ -14,14 +14,16 @@
                             <i class="material-icons">assignment</i>
                         </div>
                         <div class="card-content">
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-2" style="float: right">
+                                    <input type="text" class="form-control" placeholder=" Search ">
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
                             <h4 class="card-title">
                                 <a href="<?= url('admin/customer') ?>">Manage Customer</a>
                             </h4>
                             <div class="table-responsive">
-                                <div style="float:right;width:200px!important"  role="search">
-                                    <input type="text" class="form-control" placeholder=" Search ">
-                                    <span class="material-input"></span>
-                                </div>
                                 <table class="table table-shopping">
                                     <thead>
                                     <tr>
