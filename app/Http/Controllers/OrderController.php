@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Libraries\Request\Request;
 
 class OrderController extends Controller
 {
@@ -10,9 +11,9 @@ class OrderController extends Controller
     public function index()
     {
         $orders = (new Order)->rawPaginate('
-            SELECT * FROM orders 
-                LEFT JOIN users on orders.customer_id = users.id 
-            order by ordered_at desc'
+            SELECT orders.*, users.name, users.email FROM orders 
+                LEFT JOIN users ON orders.customer_id = users.id 
+            ORDER BY ordered_at DESC'
         , 5);
         $status = (new Order)->getStatus();
 
@@ -22,4 +23,11 @@ class OrderController extends Controller
         ]);
     }
 
+    public function updatePayment(Request $request): void
+    {
+        $order = (new Order)->findOrFail($request->get('id'));
+        $order->update(['is_paid' => 1]);
+
+        redirectBackWithSuccess('Update payment successfully');
+    }
 }

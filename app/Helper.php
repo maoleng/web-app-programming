@@ -76,6 +76,15 @@ if (! function_exists('redirectBackWithError')) {
     }
 }
 
+if (! function_exists('redirectBackWithSuccess')) {
+    function redirectBackWithSuccess(string $message)
+    {
+        session()->flash('success', $message);
+
+        redirect()->back();
+    }
+}
+
 if (! function_exists('redirectWithSuccess')) {
     function redirectWithSuccess(string $route, string $message)
     {

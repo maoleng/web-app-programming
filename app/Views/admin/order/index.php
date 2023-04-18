@@ -57,11 +57,11 @@
                                         <td class="td-name"><?= $order->name ?></td>
                                         <td><?= $order->email ?></td>
                                         <td>
-                                            <a href="<?= url('admin/order/update_payment')."?id=$order->id" ?>" class="checkbox">
+                                            <span data-href="<?= url('admin/order/update_payment')."?id=$order->id" ?>" class="checkbox btn-update_payment">
                                                 <label>
-                                                    <input <?= (int) $order->is_paid ? 'checked' : '' ?> type="checkbox">
+                                                    <input <?= (int) $order->is_paid ? 'checked disabled' : '' ?> type="checkbox">
                                                 </label>
-                                            </a>
+                                            </span>
                                         </td>
                                         <td>
                                             <div class="form-group label-floating is-empty">
@@ -109,6 +109,12 @@
     </div>
 </div>
 <?php view('admin-theme.script') ?>
+<script>
+    <?= alertSuccess() ?>
+    $('.btn-update_payment').on('click', function () {
+        window.location.href = $(this).data('href')
+    })
+</script>
 </body>
 
 
