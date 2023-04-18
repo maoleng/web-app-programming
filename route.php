@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\OrderController;
 use App\Http\Middlewares\IfAlreadyLogin;
 use Libraries\Redirect\Route;
 
@@ -16,6 +17,8 @@ Route::post('/process_register', [AuthController::class, 'processRegister']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/admin', [DashboardController::class, 'index']);
+
+Route::get('/admin/order', [OrderController::class, 'index']);
 
 Route::get('/admin/movie', [MovieController::class, 'index']);
 Route::get('/admin/movie/create', [MovieController::class, 'create']);

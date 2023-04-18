@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a href="../dashboard.html">
+                <a href="<?= url('admin/order') ?>">
                     <i class="material-icons">dashboard</i>
                     <p> Order </p>
                 </a>
