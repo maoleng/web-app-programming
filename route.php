@@ -20,6 +20,7 @@ Route::get('/admin', [DashboardController::class, 'index']);
 
 Route::get('/admin/order', [OrderController::class, 'index']);
 Route::get('/admin/order/update_payment', [OrderController::class, 'updatePayment']);
+Route::get('/admin/order/update_status', [OrderController::class, 'updateStatus']);
 
 Route::get('/admin/movie', [MovieController::class, 'index']);
 Route::get('/admin/movie/create', [MovieController::class, 'create']);

@@ -30,4 +30,14 @@ class OrderController extends Controller
 
         redirectBackWithSuccess('Update payment successfully');
     }
+
+    public function updateStatus(Request $request): void
+    {
+        $data = $request->all();
+        $order = (new Order)->findOrFail($data['id']);
+        $order->update(['status' => $data['status']]);
+
+        redirectBackWithSuccess('Update payment successfully');
+    }
+
 }

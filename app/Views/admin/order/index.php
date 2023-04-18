@@ -66,7 +66,7 @@
                                         <td>
                                             <div class="form-group label-floating is-empty">
                                                 <label class="control-label"></label>
-                                                <select name="category" class="selectpicker" data-style="select-with-transition" title="Choose Category" data-size="3">
+                                                <select data-href="<?= url('admin/order/update_status')."?id=$order->id" ?>" class="btn-update_status selectpicker" data-style="select-with-transition" title="Choose Category" data-size="3">
                                                     <?php foreach ($status as $key => $each) : ?>
                                                         <option <?= (string) $key === $order->status ? 'selected' : '' ?> value="<?= $key ?>">
                                                             <?= $each ?>
@@ -115,6 +115,10 @@
         if (! $(this).hasClass('disabled')) {
             window.location.href = $(this).data('href')
         }
+    })
+    $('.btn-update_status').on('change', function () {
+        const status = $(this).find(":selected").val();
+        window.location.href = $(this).data('href') + `&status=${status}`
     })
 </script>
 </body>
