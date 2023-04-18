@@ -19,6 +19,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/admin', [DashboardController::class, 'index']);
 
 Route::get('/admin/order', [OrderController::class, 'index']);
+Route::get('/admin/order/{id}', [OrderController::class, 'show']);
 Route::get('/admin/order/update_payment', [OrderController::class, 'updatePayment']);
 Route::get('/admin/order/update_status', [OrderController::class, 'updateStatus']);
 

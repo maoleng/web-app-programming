@@ -78,9 +78,9 @@
                                         <td><?= prettyMoney($order->total) ?></td>
                                         <td><?= $order->ordered_at ?></td>
                                         <td class="td-actions text-right">
-                                            <a href="<?= url('admin/movie/').$order->id ?>" type="button" rel="tooltip" class="btn btn-success">
+                                            <span data-href="<?= url('admin/order/').$order->id ?>" class="btn-show btn btn-success" data-toggle="modal" data-target="#modal" type="button" rel="tooltip">
                                                 <i class="material-icons">visibility</i>
-                                            </a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <?php endforeach ?>
@@ -105,6 +105,41 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                        </button>
+                        <h4 class="modal-title">Order Detail</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-shopping">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"></th>
+                                    <th>Product</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-right">Amount</th>
+                                    <th class="text-right">Sum</th>
+                                </tr>
+                                </thead>
+                                <tbody id="modal-tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php view('admin-theme.footer') ?>
     </div>
 </div>
@@ -120,6 +155,60 @@
         const status = $(this).find(":selected").val();
         window.location.href = $(this).data('href') + `&status=${status}`
     })
+    $('.btn-show').on('click', function() {
+        const url = $(this).data('href')
+        $.ajax({
+            url: url,
+        }).done(function (data) {
+            const tbody = $('#modal-tbody')
+            tbody.empty()
+            data.forEach(function (each) {
+                tbody.append(`
+                    <tr>
+                        <td>
+                            <div class="img-container">
+                                <img src="https://static4.depositphotos.com/1012407/370/v/950/depositphotos_3707681-stock-illustration-yellow-ticket.jpg" alt="...">
+                            </div>
+                        </td>
+                        <td class="td-name">
+                            <span>${each.name}</span>
+                            <br />
+                            <small>${each.category}</small>
+                        </td>
+                        <td class="td-number text-right">
+                            ${prettyMoney(each.price)}
+                        </td>
+                        <td class="td-number">
+                            ${each.amount}
+                        </td>
+                        <td class="td-number">
+                            ${prettyMoney(each.sum)}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td class="td-total">
+                            Total
+                        </td>
+                        <td colspan="2" class="td-price">
+                            ${prettyMoney(each.total)}
+                        </td>
+                        <td></td>
+                    </tr>
+                `)
+            })
+        })
+    })
+
+    function prettyMoney(money)
+    {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        })
+
+        return formatter.format(money)
+    }
 </script>
 </body>
 
