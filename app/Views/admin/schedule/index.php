@@ -49,7 +49,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <strong>Movie</strong>
+                                                            <strong>Choose movie</strong>
+                                                            <p id="p-movie"></p>
                                                             <div class="form-group label-floating is-empty">
                                                                 <label class="control-label"></label>
                                                                 <select name="movie_id" class="selectpicker" data-style="select-with-transition" title="Choose Movie" data-size="7">
@@ -206,6 +207,7 @@
             url: `<?= url('admin/movie/') ?>${movie_id}`,
         }).done(function (data) {
             $('#img-movie').attr('src', data.banner)
+            $('#p-movie').html(`Movie duration: ${data.duration} minutes`)
         })
     })
 

@@ -53,6 +53,7 @@ class ScheduleController extends Controller
         if (! empty($exist_schedules)) {
             redirectBackWithError('Duplicate schedule');
         }
+        (new Schedule)->create($data);
 
         redirectBackWithSuccess('Create schedule successfully');
     }
