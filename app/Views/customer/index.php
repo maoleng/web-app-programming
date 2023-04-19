@@ -42,96 +42,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="title">MOVIE SECTION</h2>
+                    <h2 class="title">COMING SOON MOVIE</h2>
                 </div>
-                <div class="col-md-3">
+                <?php foreach ($movies as $movie) : ?>
+                    <div class="col-md-3">
                     <div class="card card-product card-plain">
                         <div class="card-image">
-                            <a href="#pablo">
-                                <img src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/240x388/c88460ec71d04fa96e628a21494d2fd3/p/o/pope_sexorcist_poster_h_m_ng_c.jpg" alt="" />
+                            <a href="#">
+                                <img src="<?= $movie->banner ?>" alt="" />
                             </a>
                         </div>
                         <div class="card-content">
                             <h4 class="card-title">
-                                <a href="#pablo">Gucci</a>
+                                <a href="#pablo"><?= $movie->limitName() ?></a>
                             </h4>
                             <div class="footer text-center">
                                 <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
+                                    <span class="material-icons">visibility</span> View
                                 </a>
                                 <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
+                                    <span class="material-icons">sell</span> Book
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card card-product card-plain">
-                        <div class="card-image">
-                            <a href="#pablo">
-                                <img src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/240x388/c88460ec71d04fa96e628a21494d2fd3/p/o/pope_sexorcist_poster_h_m_ng_c.jpg" alt="" />
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#pablo">Gucci</a>
-                            </h4>
-                            <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
-                                </a>
-                                <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card card-product card-plain">
-                        <div class="card-image">
-                            <a href="#pablo">
-                                <img src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/240x388/c88460ec71d04fa96e628a21494d2fd3/p/o/pope_sexorcist_poster_h_m_ng_c.jpg" alt="" />
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#pablo">Gucci</a>
-                            </h4>
-                            <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
-                                </a>
-                                <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card card-product card-plain">
-                        <div class="card-image">
-                            <a href="#pablo">
-                                <img src="https://www.cgv.vn/media/catalog/product/cache/1/thumbnail/240x388/c88460ec71d04fa96e628a21494d2fd3/p/o/pope_sexorcist_poster_h_m_ng_c.jpg" alt="" />
-                            </a>
-                        </div>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                <a href="#pablo">Gucci</a>
-                            </h4>
-                            <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
-                                </a>
-                                <a href="#pablo" class="btn btn-rose btn-round">
-                                    <i class="material-icons">subject</i> Read
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach ?>
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
