@@ -1,5 +1,12 @@
 <?php
 
+if (! function_exists('toggleActiveMenu')) {
+    function toggleActiveMenu($path): string
+    {
+        return request()->url === '/'.$path ? 'class="active"' : '';
+    }
+}
+
 if (! function_exists('showFirstError')) {
     function showFirstError()
     {
