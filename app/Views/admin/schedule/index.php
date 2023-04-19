@@ -16,27 +16,26 @@
                         </div>
                         <div class="card-content">
                             <div class="row">
-                                <div class="col-sm-6 col-lg-2" style="float: right">
-                                    <input type="text" class="form-control" placeholder=" Search ">
-                                    <span class="material-input"></span>
+                                <div class="col-sm-6 col-lg-1" style="float: right">
+                                    <button id="btn-change_date" class="btn btn-primary btn-simple" style="float: right">
+                                        Filter
+                                    </button>
                                 </div>
                                 <div class="col-sm-6 col-lg-2" style="float: right">
-                                    <a href="" class="dropdown-toggle btn btn-primary btn-round" data-toggle="dropdown">Dropdown
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-left">
+                                    <div class="form-group">
+                                        <?php $date = request()->get('date') ?>
+                                        <input id="i-change_date" type="text" class="form-control datepicker" value="<?= $date ?? now()->format('Y-m-d') ?>" placeholder="Filter by date">
 
-                                            <li>
-                                                <a href="">
-                                                    a
-                                                </a>
-                                            </li>
+                                    </div>
 
-                                    </ul>
+
                                 </div>
+
+
                             </div>
                             <h4 class="card-title">
                                 <a href="<?= url('admin/schedule') ?>">Manage Schedule</a>
+
                             </h4>
                             <div class="table-responsive">
                                 <table class="table table-shopping">
@@ -128,6 +127,11 @@
 <?php view('admin-theme.script') ?>
 <script>
     <?= alertSuccess() ?>
+
+    $('#btn-change_date').click(function(e) {
+        const date = $('#i-change_date').val()
+        window.location.href = location.protocol + '//' + location.host + location.pathname + `?date=${date}`
+    })
 
     function prettyMoney(money)
     {
