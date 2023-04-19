@@ -12,7 +12,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => function ($value) {
                 if ($value === '') {
-                    return $this->fail('Name must not be empty');
+                    return $this->fail('Email must not be empty');
                 }
 
                 return true;
