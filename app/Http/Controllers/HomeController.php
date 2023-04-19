@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Schedule;
 use Libraries\Request\Request;
 
 class HomeController extends Controller
@@ -51,14 +52,24 @@ class HomeController extends Controller
     {
         $movie = (new Movie)->raw("
             SELECT *, REPLACE(LOWER(name), ' ', '-') FROM movies
-           WHERE REPLACE(LOWER(name), ' ', '-') = '$name.'
-        ");
+            WHERE REPLACE(LOWER(name), ' ', '-') = '$name.'
+        ")[0] ?? null;
         if (empty($movie)) {
             abort(404);
         }
-
+        $schedules = (new Schedule)->raw("
+            SELECT * FROM schedules
+            WHERE movie_id = '$movie->id' AND started_at > CURDATE()
+        ");
+        $show_dates = [];
+        foreach ($schedules as $schedule) {
+            $started_at = $schedule->startedAt();
+            $show_dates[$started_at->format('m-d')][$schedule->id] = $started_at->format('H:i');
+        }
+//dd($show_dates);
         return view('customer.movie.show', [
-            'movie' => $movie[0],
+            'movie' => $movie,
+            'show_dates' => $show_dates,
         ]);
     }
 }

@@ -32,9 +32,73 @@
                     </div>
                     <div class="row text-right">
                         <a href="<?= $movie->trailer ?>" target="_blank" class="btn btn-rose btn-round">Trailer &nbsp;<span class="material-icons">smart_display</span></a>
-                        <button class="btn btn-rose btn-round">Book &nbsp;<span class="material-icons">sell</span></button>
+                        <button data-toggle="modal" data-target="#movie" class="btn btn-rose btn-round">Book &nbsp;<span class="material-icons">sell</span></button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="movie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title" id="myModalLabel">Booking Ticket</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <strong>Choose date</strong>
+                            <ul class="nav nav-pills nav-pills-rose">
+                                <?php foreach (array_keys($show_dates) as $date) : ?>
+                                    <li><a href="#<?= $date ?>" data-toggle="tab" aria-expanded="true"><?= $date ?></a></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="picture">
+                                <img src="<?= $movie->banner ?>" alt="Thumbnail Image"  class="img-rounded img-responsive">
+                                <p><strong><?= $movie->name ?></strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Choose Time</strong>
+                            <div class="tab-content">
+                                <?php foreach ($show_dates as $date => $times) : ?>
+                                    <div class="tab-pane" id="<?= $date ?>">
+                                        <ul class="nav nav-pills nav-pills-rose">
+                                            <?php foreach ($times as $schedule_id => $time) : ?>
+                                                <li data-id="<?= $schedule_id ?>" class="btn-choose_schedule"><a href="<?= $time ?>" data-toggle="tab"><?= $time ?></a></li>
+                                            <?php endforeach ?>
+                                        </ul>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>Choose Ticket Type</strong>
+                            <ul class="nav nav-pills nav-pills-rose">
+                                <li data-type="1" class="btn-choose_type active"><a href="" data-toggle="tab" aria-expanded="true">2D</a></li>
+                                <li data-type="2" class="btn-choose_type"><a href="" data-toggle="tab" aria-expanded="false">3D</a></li>
+                                <li data-type="3" class="btn-choose_type"><a href="" data-toggle="tab" aria-expanded="false">4DX</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button id="btn-continue" type="button" class="hidden btn btn-info btn-round" data-dismiss="modal">Continue</button>
             </div>
         </div>
     </div>
@@ -43,4 +107,16 @@
 <?php view('customer-theme.footer') ?>
 </body>
 <?php view('customer-theme.script') ?>
+<script>
+    const btn_continue = $('#btn-continue')
+    $('.btn-choose_schedule').on('click', function () {
+        btn_continue.removeClass('hidden')
+    })
+    btn_continue.on('click', function () {
+        const schedule_id = $('.btn-choose_schedule.active').data('id')
+        const type = $('.btn-choose_type.active').data('type')
+
+    })
+
+</script>
 </html>
