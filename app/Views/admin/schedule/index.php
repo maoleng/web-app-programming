@@ -25,17 +25,11 @@
                                     <div class="form-group">
                                         <?php $date = request()->get('date') ?>
                                         <input id="i-change_date" type="text" class="form-control datepicker" value="<?= $date ?? now()->format('Y-m-d') ?>" placeholder="Filter by date">
-
                                     </div>
-
-
                                 </div>
-
-
                             </div>
                             <h4 class="card-title">
                                 <a href="<?= url('admin/schedule') ?>">Manage Schedule</a>
-
                             </h4>
                             <div class="table-responsive">
                                 <table class="table table-shopping">
@@ -64,7 +58,7 @@
                                             </div>
                                             <div class="modal fade" id="modal-<?= $schedule->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-notice">
-                                                    <div class="modal-content">
+                                                    <form action="<?= url('admin/schedule/').$schedule->id ?>" method="post" class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
                                                             <h5 class="modal-title" id="myModalLabel">Edit schedule</h5>
@@ -85,18 +79,19 @@
                                                             </div>
                                                             <div class="instruction">
                                                                 <div class="row">
+                                                                    <input type="hidden" name="date" value="<?= $schedule->date ?>">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <strong>Started At</strong>
                                                                             <label class="label-control"></label>
-                                                                            <input type="text" class="form-control timepicker" value="<?= $schedule->started_time ?>" />
+                                                                            <input name="started_at" type="text" class="form-control timepicker" value="<?= $schedule->started_time ?>" />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <strong>Ended At</strong>
                                                                             <label class="label-control"></label>
-                                                                            <input type="text" class="form-control timepicker" value="<?= $schedule->ended_time ?>" />
+                                                                            <input name="ended_at" type="text" class="form-control timepicker" value="<?= $schedule->ended_time ?>" />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -104,9 +99,9 @@
                                                         </div>
                                                         <div class="modal-footer text-center">
                                                             <button class="btn btn-primary">Update<div class="ripple-container"></div></button>
-                                                            <button class="btn btn-danger" style="margin-left: 20px">Delete</button>
+                                                            <button data-id="<?= $schedule->id ?>" type="button" class="btn-delete btn btn-danger" style="margin-left: 20px">Delete</button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         <?php endforeach ?>

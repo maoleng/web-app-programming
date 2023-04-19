@@ -25,6 +25,7 @@ Route::get('/admin/order/update_payment', [OrderController::class, 'updatePaymen
 Route::get('/admin/order/update_status', [OrderController::class, 'updateStatus']);
 
 Route::get('/admin/schedule', [ScheduleController::class, 'index']);
+Route::post('/admin/schedule/{id}', [ScheduleController::class, 'update']);
 
 Route::get('/admin/movie', [MovieController::class, 'index']);
 Route::get('/admin/movie/create', [MovieController::class, 'create']);
