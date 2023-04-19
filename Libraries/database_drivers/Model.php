@@ -133,6 +133,11 @@ abstract class Model
         return $this->callOrderByDesc($column, $this);
     }
 
+    public function limit($amount): Query
+    {
+        return $this->callLimit($amount, $this);
+    }
+
     public function where($column, $value): Query
     {
         $this->validateFillable([$column]);

@@ -61,6 +61,7 @@ trait Builder
         $query = 'SELECT '.$column.'FROM '.$this->getTable();
         $query .= $this->str_where ?? '';
         $query .= $this->str_order_by ?? '';
+        $query .= $this->str_limit ?? '';
 
         return $this->database()->query($query)->fetch_all(MYSQLI_ASSOC);
     }
@@ -95,6 +96,14 @@ trait Builder
     {
         $query = new Query($model);
         $query->orderBy($column, 'DESC');
+
+        return $query;
+    }
+
+    public function callLimit($amount, $model): Query
+    {
+        $query = new Query($model);
+        $query->limit($amount);
 
         return $query;
     }

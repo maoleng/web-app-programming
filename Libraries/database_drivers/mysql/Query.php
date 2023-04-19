@@ -12,6 +12,7 @@ class Query
     public Model $model;
     public string $str_where;
     public string $str_order_by;
+    public string $str_limit;
 
     public function __construct($model, $db = null)
     {
@@ -35,6 +36,13 @@ class Query
     public function orderByDesc($column): static
     {
         $this->orderBy($column, 'DESC');
+
+        return $this;
+    }
+
+    public function limit($amount): static
+    {
+        $this->str_limit = ' LIMIT '.$amount;
 
         return $this;
     }
