@@ -11,6 +11,9 @@ use App\Http\Middlewares\IfAlreadyLogin;
 use Libraries\Redirect\Route;
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/now_showing_movie', [HomeController::class, 'nowShowing']);
+
+
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);
 Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlreadyLogin::class);
 Route::post('/process_login', [AuthController::class, 'processLogin']);

@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="index.html">
+                    <a href="<?= url('now_showing_movie') ?>">
                         <i class="material-icons">apps</i> Now Showing Movie
                     </a>
                 </li>
