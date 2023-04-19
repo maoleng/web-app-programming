@@ -99,7 +99,7 @@
                                                         </div>
                                                         <div class="modal-footer text-center">
                                                             <button class="btn btn-primary">Update<div class="ripple-container"></div></button>
-                                                            <button data-id="<?= $schedule->id ?>" type="button" class="btn-delete btn btn-danger" style="margin-left: 20px">Delete</button>
+                                                            <button data-href="<?= url('admin/schedule/destroy/').$schedule->id ?>" type="button" class="btn-delete btn btn-danger" style="margin-left: 20px">Delete</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -123,9 +123,19 @@
 <script>
     <?= alertSuccess() ?>
 
-    $('#btn-change_date').click(function(e) {
+    $('#btn-change_date').on('click', function(e) {
         const date = $('#i-change_date').val()
         window.location.href = location.protocol + '//' + location.host + location.pathname + `?date=${date}`
+    })
+
+    $('.btn-delete').on('click', function() {
+        const href = $(this).data('href')
+        $.ajax({
+            url: href,
+            method: 'POST',
+        }).done(function () {
+            window.location.reload()
+        })
     })
 
     function prettyMoney(money)

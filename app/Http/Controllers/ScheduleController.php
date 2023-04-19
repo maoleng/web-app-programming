@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Schedule;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use Illuminate\Support\Str;
 use Libraries\Request\Request;
 
 class ScheduleController extends Controller
@@ -44,9 +43,16 @@ class ScheduleController extends Controller
         $data['ended_at'] = "{$data['date']} {$data['ended_at']}:00";
         unset($data['date']);
 
-        (new Schedule)->where('id', $id)->update($data);
+        (new Schedule)->findOrFail($id)->update($data);
 
         redirectBackWithSuccess('Update schedule successfully');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        (new Schedule)->findOrFail($id)->delete();
+
+        session()->flash('success', 'Delete schedule successfully');
     }
 
     private function getWeekArrayKey($base_date): array
