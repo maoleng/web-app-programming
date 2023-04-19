@@ -47,4 +47,18 @@ class HomeController extends Controller
         ]);
     }
 
+    public function show(Request $request, $name)
+    {
+        $movie = (new Movie)->raw("
+            SELECT *, REPLACE(LOWER(name), ' ', '-') FROM movies
+           WHERE REPLACE(LOWER(name), ' ', '-') = '$name.'
+        ");
+        if (empty($movie)) {
+            abort(404);
+        }
+
+        return view('customer.movie.show', [
+            'movie' => $movie[0],
+        ]);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Libraries\database_drivers\Model;
 
@@ -13,6 +14,11 @@ class Movie extends Model
     protected array $fillable = [
         'name', 'description', 'duration', 'directors', 'actors', 'category', 'premiered_date', 'banner', 'trailer', 'created_at',
     ];
+
+    public function url(): string
+    {
+        return Str::slug($this->name);
+    }
 
     public function limitName(): string
     {
@@ -27,6 +33,11 @@ class Movie extends Model
     public function prettyCategory(): string
     {
         return $this->getCategories()[$this->category];
+    }
+
+    public function premieredDate(): Carbon
+    {
+        return Carbon::make($this->premiered_date);
     }
 
     public function getCategories(): array

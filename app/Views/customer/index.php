@@ -54,10 +54,10 @@
                         </div>
                         <div class="card-content">
                             <h4 class="card-title">
-                                <a href="#pablo"><?= $movie->limitName() ?></a>
+                                <a href="<?= $movie->url() ?>"><?= $movie->limitName() ?></a>
                             </h4>
                             <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-rose btn-round">
+                                <a href="<?= $movie->url() ?>" class="btn btn-rose btn-round">
                                     <span class="material-icons">visibility</span> View
                                 </a>
                                 <a href="#pablo" class="btn btn-rose btn-round">
