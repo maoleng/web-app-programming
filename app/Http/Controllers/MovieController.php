@@ -18,6 +18,11 @@ class MovieController extends Controller
         ]);
     }
 
+    public function show(Request $request, $id): void
+    {
+        response()->json((array) (new Movie)->findOrFail($id));
+    }
+
     public function create()
     {
         $categories = (new Movie)->getCategories();

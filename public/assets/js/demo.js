@@ -25,6 +25,7 @@ demo = {
 
     initFormExtendedDatetimepickers: function() {
         $('.datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
             icons: {
                 time: "fa fa-clock-o",
                 date: "fa fa-calendar",

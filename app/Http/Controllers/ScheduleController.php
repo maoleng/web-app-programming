@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Schedule\StoreRequest;
+use App\Models\Movie;
 use App\Models\Schedule;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -30,10 +32,29 @@ class ScheduleController extends Controller
             $schedule->ended_time = $schedule->endedAt()->format('H:i');
             $groups[$started_at->englishDayOfWeek."<br>{$started_at->format('d-m')}"][] = $schedule;
         }
+        $movies = (new Movie)->orderByDesc('created_at')->get(['id', 'name']);
 
         return view('admin.schedule.index', [
             'groups' => $groups,
+            'movies' => $movies,
         ]);
+    }
+
+    public function store(StoreRequest $request)
+    {
+        $data = $request->validated();
+        $exist_schedules = (new Schedule)->raw("
+            SELECT * FROM schedules
+            WHERE 
+                  (started_at >= '{$data['started_at']}' AND started_at <= '{$data['ended_at']}')
+                    OR 
+                  (ended_at >= '{$data['started_at']}' AND ended_at <= '{$data['ended_at']}')
+        ");
+        if (! empty($exist_schedules)) {
+            redirectBackWithError('Duplicate schedule');
+        }
+
+        redirectBackWithSuccess('Create schedule successfully');
     }
 
     public function update(Request $request, $id): void
@@ -48,7 +69,7 @@ class ScheduleController extends Controller
         redirectBackWithSuccess('Update schedule successfully');
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $id): void
     {
         (new Schedule)->findOrFail($id)->delete();
 

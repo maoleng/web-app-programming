@@ -1,3 +1,5 @@
+<?php $old = session()->get('old') ?>
+
 <!doctype html>
 <html lang="en">
 <?php view('admin-theme.head_tag') ?>
@@ -27,6 +29,66 @@
                                         <input id="i-change_date" type="text" class="form-control datepicker" value="<?= $date ?? now()->format('Y-m-d') ?>" placeholder="Filter by date">
                                     </div>
                                 </div>
+                                <div class="col-sm-6 col-lg-8" style="float: right">
+                                    <button data-toggle="modal" data-target="#btn-add_schedule" class="btn btn-primary">Add Schedule<div class="ripple-container"></div></button>
+                                </div>
+
+                                <div class="modal fade" id="btn-add_schedule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-notice">
+                                        <form action="<?= url('admin/schedule') ?>" method="post" class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                                                <h5 class="modal-title" id="myModalLabel">Create schedule</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="instruction">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="picture">
+                                                                <img id="img-movie" src="<?= url('public/assets/img/image_placeholder.jpg') ?>" alt="Thumbnail Image" class="img-rounded img-responsive">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <strong>Movie</strong>
+                                                            <div class="form-group label-floating is-empty">
+                                                                <label class="control-label"></label>
+                                                                <select name="movie_id" class="selectpicker" data-style="select-with-transition" title="Choose Movie" data-size="7">
+                                                                    <?php foreach ($movies as $movie) : ?>
+                                                                        <option <?= (string) $movie->id === ($old['movie_id'] ?? null) ? 'selected' : '' ?> value="<?= $movie->id ?>">
+                                                                            <?= $movie->name ?>
+                                                                        </option>
+                                                                    <?php endforeach ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="instruction">
+                                                    <div class="row">
+                                                        <input type="hidden" name="date">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <strong>Started At</strong>
+                                                                <label class="label-control"></label>
+                                                                <input name="started_at" value="<?= $old['started_at'] ?? null ?>" type="text" class="form-control datetimepicker">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <strong>Ended At</strong>
+                                                                <label class="label-control"></label>
+                                                                <input name="ended_at" value="<?= $old['ended_at'] ?? null ?>" type="text" class="form-control datetimepicker">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer text-center">
+                                                <button class="btn btn-primary">Save<div class="ripple-container"></div></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <h4 class="card-title">
                                 <a href="<?= url('admin/schedule') ?>">Manage Schedule</a>
@@ -43,7 +105,6 @@
                                     <tbody>
                                     <?php foreach ($groups as $schedules) : ?>
                                         <td class="col-md-1">
-
                                         <?php foreach ($schedules as $schedule) : ?>
                                             <div data-toggle="modal" data-target="#modal-<?= $schedule->id ?>" class="card" style="cursor: pointer">
                                                 <div class="card-header">
@@ -122,6 +183,7 @@
 <?php view('admin-theme.script') ?>
 <script>
     <?= alertSuccess() ?>
+    <?= alertError() ?>
 
     $('#btn-change_date').on('click', function(e) {
         const date = $('#i-change_date').val()
@@ -135,6 +197,15 @@
             method: 'POST',
         }).done(function () {
             window.location.reload()
+        })
+    })
+
+    $('select').on('change', function (e) {
+        const movie_id = this.value
+        $.ajax({
+            url: `<?= url('admin/movie/') ?>${movie_id}`,
+        }).done(function (data) {
+            $('#img-movie').attr('src', data.banner)
         })
     })
 
