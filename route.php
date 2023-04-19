@@ -12,6 +12,7 @@ use Libraries\Redirect\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/now_showing_movie', [HomeController::class, 'nowShowing']);
+Route::get('/coming_soon_movie', [HomeController::class, 'comingSoon']);
 
 
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);

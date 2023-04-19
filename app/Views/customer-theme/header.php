@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="presentation.html">THE CEENEMA</a>
+            <a class="navbar-brand" href="<?= url('/') ?>">THE CEENEMA</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
+                    <a href="<?= url('coming_soon_movie') ?>">
                         <i class="material-icons">apps</i> Coming Soon Movie
                     </a>
                 </li>

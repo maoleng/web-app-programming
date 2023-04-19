@@ -71,10 +71,10 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
-                    <button class="btn btn-primary btn-round">
+                    <a href="<?= url('coming_soon_movie') ?>" class="btn btn-primary btn-round">
                         View more
                         <div class="ripple-container"></div>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

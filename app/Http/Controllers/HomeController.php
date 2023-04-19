@@ -26,8 +26,24 @@ class HomeController extends Controller
             LIMIT 20
         ');
 
-        return view('customer.now_showing', [
+        return view('customer.movie.index', [
             'movies' => $movies,
+            'title' => 'NOW SHOWING MOVIE',
+        ]);
+    }
+
+    public function comingSoon()
+    {
+        $movies = (new Movie)->raw('
+            SELECT * FROM movies
+            WHERE premiered_date > CURDATE()
+            ORDER BY premiered_date DESC
+            LIMIT 20
+        ');
+
+        return view('customer.movie.index', [
+            'movies' => $movies,
+            'title' => 'COMING SOON MOVIE',
         ]);
     }
 

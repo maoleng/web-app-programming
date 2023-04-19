@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="title">NOW SHOWING MOVIE</h2>
+                    <h2 class="title"><?= $title ?></h2>
                 </div>
                 <?php foreach ($movies as $movie) : ?>
                     <div class="col-md-3">
