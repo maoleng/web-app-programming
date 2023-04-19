@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li>
-                <a href="../dashboard.html">
+                <a href="<?= url('admin/schedule') ?>">
                     <i class="material-icons">dashboard</i>
                     <p> Schedule </p>
                 </a>
