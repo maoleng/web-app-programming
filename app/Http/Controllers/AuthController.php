@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        return view('customer.auth.register');
     }
 
     public function processLogin(LoginRequest $request): void

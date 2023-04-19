@@ -33,7 +33,7 @@
                         <div class="footer text-center">
                             <button class="btn btn-primary btn-simple btn-wd btn-lg">Login</button>
                         </div>
-                        <p class="description text-center">Does not have account ? <a href="">Register</a></p>
+                        <p class="description text-center">Does not have account ? <a href="<?= url('register') ?>">Register</a></p>
                     </form>
                 </div>
             </div>
