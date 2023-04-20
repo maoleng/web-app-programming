@@ -82,11 +82,11 @@
                             </div>
                             <div class="feed-line">
                                 <b>Combo</b>
-                                <p></p>
+                                <p><?= prettyMoney($combos_price) ?></p>
                             </div>
                             <div class="feed-line">
                                 <b>Total</b>
-                                <p></p>
+                                <p><?= prettyMoney($total) ?></p>
                             </div>
                         </div>
                     </div>
