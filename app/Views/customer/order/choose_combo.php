@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
-<?php view('customer-theme.head_tag') ?>
+<?php include section('customer-theme.head_tag') ?>
 <body class="section-white">
-<?php view('customer-theme.header') ?>
+<?php include section('customer-theme.header') ?>
 <div class="section"></div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -98,7 +98,7 @@
     </div>
 </div>
 </body>
-<?php view('customer-theme.script') ?>
+<?php include section('customer-theme.script') ?>
 <script>
     $('.btn-choose_combo').on('click', function () {
         $.ajax({

@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
-<?php view('customer-theme.head_tag') ?>
+<?php include section('customer-theme.head_tag') ?>
 <body class="product-page">
-<?php view('customer-theme.header') ?>
+<?php include section('customer-theme.header') ?>
 
 <div class="page-header header-filter" data-parallax="true" filter-color="rose" style="background-image: url('assets/img/bg6.jpg');">
 </div>
@@ -104,9 +104,9 @@
     </div>
 </div>
 
-<?php view('customer-theme.footer') ?>
+<?php include section('customer-theme.footer') ?>
 </body>
-<?php view('customer-theme.script') ?>
+<?php include section('customer-theme.script') ?>
 <script>
     const btn_continue = $('#btn-continue')
     $('.btn-choose_schedule').on('click', function () {

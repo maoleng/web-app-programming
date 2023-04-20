@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
-<?php view('customer-theme.head_tag') ?>
+<?php include section('customer-theme.head_tag') ?>
 <body class="section-white">
-<?php view('customer-theme.header') ?>
+<?php include section('customer-theme.header') ?>
 <div class="cd-section" id="features">
     <div class="section">
         <div class="container">
@@ -39,7 +39,7 @@
     </div>
 
 </div>
-<?php view('customer-theme.footer') ?>
+<?php include section('customer-theme.footer') ?>
 </body>
-<?php view('customer-theme.script') ?>
+<?php include section('customer-theme.script') ?>
 </html>

@@ -2,13 +2,13 @@
 
 <!doctype html>
 <html lang="en">
-<?php view('admin-theme.head_tag') ?>
+<?php include section('admin-theme.head_tag') ?>
 <body>  <div id="sliderRegular" class="hidden"></div>
 <div id="sliderDouble" class="hidden"></div>
 <div class="wrapper">
-    <?php view('admin-theme.side_bar') ?>
+    <?php include section('admin-theme.side_bar') ?>
     <div class="main-panel">
-        <?php view('admin-theme.header') ?>
+        <?php include section('admin-theme.header') ?>
         <div class="content">
             <div class="container-fluid">
                 <div class="col-md-12">
@@ -178,10 +178,10 @@
             </div>
         </div>
 
-        <?php view('admin-theme.footer') ?>
+        <?php include section('admin-theme.footer') ?>
     </div>
 </div>
-<?php view('admin-theme.script') ?>
+<?php include section('admin-theme.script') ?>
 <script>
     <?= alertSuccess() ?>
     <?= alertError() ?>

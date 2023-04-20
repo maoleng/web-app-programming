@@ -2,9 +2,9 @@
 
 <!doctype html>
 <html lang="en">
-<?php view('customer-theme.head_tag') ?>
+<?php include section('customer-theme.head_tag') ?>
 <body class="login-page">
-<?php view('customer-theme.header') ?>
+<?php include section('customer-theme.header') ?>
 <div class="page-header header-filter" style="background-image: url('<?= url('public/assets/img/bg7.jpg') ?>'); background-size: cover; background-position: top center;">
     <div class="container">
         <div class="row">
@@ -41,7 +41,7 @@
     </div>
 </div>
 </body>
-<?php view('customer-theme.script') ?>
+<?php include section('customer-theme.script') ?>
 <script>
     <?= alertError() ?>
     <?= alertSuccess() ?>
