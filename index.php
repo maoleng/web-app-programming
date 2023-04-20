@@ -1,7 +1,7 @@
 <?php
 
-foreach (scandir(__DIR__.'\Libraries\helpers') as $filename) {
-    $path = __DIR__.'\Libraries\helpers'. '\\' . $filename;
+foreach (scandir(__DIR__.'/Libraries/helpers') as $filename) {
+    $path = __DIR__.'/Libraries/helpers/' . $filename;
     if (is_file($path)) {
         require $path;
     }
