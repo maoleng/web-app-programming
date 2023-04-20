@@ -55,11 +55,11 @@ if (! function_exists('env')) {
 if (! function_exists('asset')) {
     function asset($path = ''): string
     {
-        if (str_contains($path, '/')) {
-            $path = str_replace('/', '\\', $path);
+        if (str_contains($path, '\\')) {
+            $path = str_replace('\\', '/', $path);
         }
-        if (!in_array($path[0], ['/', '\\'])) {
-            $path = '\\'.$path;
+        if (!in_array($path[0], ['\\', '/'])) {
+            $path = '/'.$path;
         }
 
         return dirname(__DIR__, 2).$path;
