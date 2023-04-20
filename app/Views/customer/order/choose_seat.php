@@ -64,12 +64,12 @@
                                 <p><?= env('APP_NAME') ?></p>
                             </div>
                             <div class="feed-line">
-                                <b>Showtimes</b>
+                                <b>Showtime</b>
                                 <p><?= $tickets[0]->started_at ?></p>
                             </div>
                             <div class="feed-line">
                                 <b>Seats</b>
-                                <p><?= session()->get('order')['seats'] ?? null ?></p>
+                                <p><?= $str_seats ?></p>
                             </div>
                         </div>
                     </div>

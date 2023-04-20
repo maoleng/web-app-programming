@@ -36,14 +36,19 @@ class BookTicketController extends Controller
         ");
 
         $tickets_price = 0;
+        $seats = [];
         foreach ($tickets as $ticket) {
-            $tickets_price += in_array((int) $ticket->id, $order['chosen_tickets'], true) ? $ticket->price : 0;
+            if (in_array((int) $ticket->id, $order['chosen_tickets'], true)) {
+                $tickets_price += $ticket->price;
+                $seats[] = $ticket->seatName();
+            }
         }
 
         return view('customer.order.choose_seat', [
             'tickets' => $tickets,
             'chosen_tickets' => $order['chosen_tickets'] ?? [],
             'tickets_price' => $tickets_price,
+            'str_seats' => implode(', ', $seats),
         ]);
     }
 
