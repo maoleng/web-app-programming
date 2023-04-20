@@ -22,8 +22,8 @@ class AppLoader
 
     private function loadExternalHelpers(): void
     {
-        require_once asset('app/Helper.php');
-        $this->loadFiles('app/Helpers');
+        require_once asset('App/Helper.php');
+        $this->loadFiles('App/Helpers');
     }
 
     private function loadSupport(): void
@@ -46,13 +46,13 @@ class AppLoader
     private function loadMails(): void
     {
         require_once asset('Libraries/Mail/Mailable.php');
-        $this->loadFiles('app/Mails');
+        $this->loadFiles('App/Mails');
     }
 
     private function loadHttp(): void
     {
-        require_once asset('app/Http/Controllers/Controller.php');
-        require_once asset('app/Http/Middlewares/Middleware.php');
+        require_once asset('App/Http/Controllers/Controller.php');
+        require_once asset('App/Http/Middlewares/Middleware.php');
     }
 
     private function loadModels(): void

@@ -11,7 +11,7 @@ if (! function_exists('view')) {
     function view($view_name, $data = [])
     {
         $path = str_replace('.', '/', $view_name);
-        $file_path = asset('/app/Views/'.$path.'.php');
+        $file_path = asset('/App/Views/'.$path.'.php');
         if (!file_exists($file_path)) {
             throwHttpException("VIEW $view_name NOT EXISTS");
         }
@@ -28,7 +28,7 @@ if (! function_exists('section')) {
     function section($view_name): string
     {
         $path = str_replace('.', '/', $view_name);
-        $file_path = asset('/app/Views/'.$path.'.php');
+        $file_path = asset('/App/Views/'.$path.'.php');
         if (!file_exists($file_path)) {
             throwHttpException("VIEW $view_name NOT EXISTS");
         }

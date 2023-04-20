@@ -26,5 +26,5 @@
 </FilesMatch>
 
 RedirectMatch 403 ^/vendor/.*/?$
-RedirectMatch 403 ^/app/.*/?$
+RedirectMatch 403 ^/App/.*/?$
 RedirectMatch 403 ^/Libraries/.*/?$
