@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Combo;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Ticket;
 use Libraries\Request\Request;
 
@@ -94,6 +96,7 @@ class BookTicketController extends Controller
         redirect()->to($payment_url);
     }
 
+
     private function getOrderInformation($order): array
     {
         $tickets = (new Ticket)->raw("
@@ -117,16 +120,17 @@ class BookTicketController extends Controller
             }
         }
 
-        $combo_ids = array_keys($order['combos'] ?? []);
-        $combos = (new Combo)->whereIn('id', $combo_ids)->get();
+        $order_combos = $order['combos'] ?? [];
+        $combos = (new Combo)->whereIn('id', array_keys($order_combos))->get();
         $combos_price = 0;
         foreach ($combos as $combo) {
-            $combos_price += $combo->price;
+            $combos_price += $combo->price * $order_combos[$combo->id];
         }
 
         return [
             'tickets' => $tickets,
             'chosen_tickets' => $order['chosen_tickets'] ?? [],
+            'chosen_combos' => $order_combos,
             'tickets_price' => $tickets_price,
             'combos_price' => $combos_price,
             'total' => $tickets_price + $combos_price,
