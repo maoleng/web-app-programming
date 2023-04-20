@@ -141,7 +141,7 @@ class BookTicketController extends Controller
 
     public function history()
     {
-        $orders = (new Order)->where('customer_id', authed()->id)->paginate(5);
+        $orders = (new Order)->where('customer_id', authed()->id)->orderByDesc('ordered_at')->paginate(5);
 
         return view('customer.order.history', [
             'orders' => $orders,

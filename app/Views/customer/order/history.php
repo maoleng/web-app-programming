@@ -120,6 +120,7 @@
                         </td>
                         <td class="td-name">
                             <span>${name}</span>
+                            <br><small><a target="_blank" href="${each.qr_code}">${! each.qr_code ? '' : 'QR Code'}</a></small>
                         </td>
                         <td class="td-number text-right">
                             ${prettyMoney(each.price)}

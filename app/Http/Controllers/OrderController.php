@@ -24,7 +24,8 @@ class OrderController extends Controller
     public function show(Request $request, $id): void
     {
         $result = (new Order)->raw("
-            SELECT movies.name as `movie_name`, combos.name as `combo_name`, image, amount, order_detail.price, (amount * order_detail.price) as `sum`, orders.total
+            SELECT movies.name as `movie_name`, combos.name as `combo_name`, image, qr_code,
+                   amount, order_detail.price, (amount * order_detail.price) as `sum`, orders.total
             FROM orders 
                 LEFT JOIN order_detail ON order_detail.order_id = orders.id
                 LEFT JOIN tickets ON tickets.id = order_detail.ticket_id
