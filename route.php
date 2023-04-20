@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Middlewares\IfAlreadyLogin;
 use Libraries\Redirect\Route;
@@ -16,6 +17,9 @@ Route::get('/{name}', [HomeController::class, 'show']);
 Route::get('/now_showing_movie', [HomeController::class, 'nowShowing']);
 Route::get('/coming_soon_movie', [HomeController::class, 'comingSoon']);
 
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/profile', [ProfileController::class, 'update']);
+
 Route::post('/order/choose_schedule', [BookTicketController::class, 'chooseSchedule']);
 Route::get('/order/choose_seat', [BookTicketController::class, 'chooseSeat']);
 Route::get('/order/choose_seat/{id}', [BookTicketController::class, 'processChooseSeat']);
@@ -23,6 +27,7 @@ Route::get('/order/choose_combo', [BookTicketController::class, 'chooseCombo']);
 Route::post('/order/choose_combo', [BookTicketController::class, 'processChooseCombo']);
 Route::post('/order/pay', [BookTicketController::class, 'pay']);
 Route::post('/order/pay/callback', [BookTicketController::class, 'callback']);
+Route::post('/order/history', [BookTicketController::class, 'history']);
 
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);
 Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlreadyLogin::class);

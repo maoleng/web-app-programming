@@ -36,12 +36,12 @@
                         </a>
                         <ul class="dropdown-menu dropdown-with-icons">
                             <li>
-                                <a href="examples/landing-page.html">
+                                <a href="<?= url('profile') ?>">
                                     <span class="material-icons">account_circle</span> Profile
                                 </a>
                             </li>
                             <li>
-                                <a href="examples/blog-posts.html">
+                                <a href="<?= url('order/history') ?>">
                                     <span class="material-icons">history</span> Order History
                                 </a>
                             </li>
