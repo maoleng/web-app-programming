@@ -13,4 +13,8 @@ class Ticket extends Model
         'type', 'price', 'seats', 'schedule_id', 'qr_code', 'is_used',
     ];
 
+    public function seatName(): string
+    {
+        return str_replace(',', '', $this->seats);
+    }
 }

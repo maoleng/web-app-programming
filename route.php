@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookTicketController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -15,6 +16,9 @@ Route::get('/{name}', [HomeController::class, 'show']);
 Route::get('/now_showing_movie', [HomeController::class, 'nowShowing']);
 Route::get('/coming_soon_movie', [HomeController::class, 'comingSoon']);
 
+Route::post('/order/choose_schedule', [BookTicketController::class, 'chooseSchedule']);
+Route::get('/order/choose_seat', [BookTicketController::class, 'chooseSeat']);
+Route::get('/order/choose_seat/{id}', [BookTicketController::class, 'processChooseSeat']);
 
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);
 Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlreadyLogin::class);

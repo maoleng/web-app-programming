@@ -115,7 +115,16 @@
     btn_continue.on('click', function () {
         const schedule_id = $('.btn-choose_schedule.active').data('id')
         const type = $('.btn-choose_type.active').data('type')
-
+        $.ajax({
+            url: '<?= url('order/choose_schedule') ?>',
+            method: 'POST',
+            data: {
+                schedule_id: schedule_id,
+                type: type,
+            }
+        }).done(function () {
+            window.location.href = '<?= url('order/choose_seat') ?>'
+        })
     })
 
 </script>
