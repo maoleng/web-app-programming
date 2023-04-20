@@ -96,6 +96,49 @@ class BookTicketController extends Controller
         redirect()->to($payment_url);
     }
 
+    public function callback(Request $request): void
+    {
+        $order = session()->get('order');
+        if (empty($order)) {
+            return;
+        }
+
+        $data = $request->all();
+        $order_info = $this->getOrderInformation($order);
+
+        $order = (new Order)->create([
+            'total' => $order_info['total'],
+            'bank_code' => $data['bank_code'],
+            'transaction_code' => $data['transaction_code'],
+            'customer_id' => authed()->id,
+            'ordered_at' => now()->format('Y-m-d H:i:s'),
+        ]);
+
+        $tickets = (new Ticket)->whereIn('id', $order_info['chosen_tickets'])->get();
+        foreach ($tickets as $ticket) {
+            (new OrderDetail)->create([
+                'order_id' => $order->id,
+                'ticket_id' => $ticket->id,
+                'combo_id' => null,
+                'amount' => 1,
+                'price' => $ticket->price,
+            ]);
+        }
+        (new Ticket)->whereIn('id', $order_info['chosen_tickets'])->update(['is_used' => 1]);
+
+        $combos = (new Combo)->whereIn('id', array_keys($order_info['chosen_combos']))->get();
+        foreach ($combos as $combo) {
+            (new OrderDetail)->create([
+                'order_id' => $order->id,
+                'ticket_id' => null,
+                'combo_id' => $combo->id,
+                'amount' => $order_info['chosen_combos'][$combo->id],
+                'price' => $combo->price,
+            ]);
+        }
+
+        session()->forget('order');
+    }
 
     private function getOrderInformation($order): array
     {

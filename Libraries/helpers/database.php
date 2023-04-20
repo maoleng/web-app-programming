@@ -5,7 +5,7 @@ if (! function_exists('cleanData')) {
     {
         if (is_array($data)) {
             return array_map(static function ($each) {
-                return addslashes($each);
+                return $each === null ? null : addslashes($each);
             }, $data);
         }
 

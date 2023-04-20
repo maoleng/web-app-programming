@@ -13,4 +13,7 @@ class OrderDetail extends Model
         'order_id', 'ticket_id', 'combo_id', 'amount', 'price',
     ];
 
+    protected array $not_string_attributes = [
+        'amount', 'price',
+    ];
 }

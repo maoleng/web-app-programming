@@ -194,7 +194,9 @@ trait Builder
     {
         $str_set = '';
         foreach ($data as $column => $value) {
-            if (in_array($column, $this->not_string_attributes ?? [], true)) {
+            if ($value === null) {
+                $str_set .= $column.' = NULL, ';
+            } elseif (in_array($column, $this->not_string_attributes ?? [], true)) {
                 $str_set .= $column.' = '.$value.', ';
             } else {
                 $str_set .= $column.' = "'.$value.'", ';
@@ -208,7 +210,9 @@ trait Builder
     {
         $values = '(';
         foreach ($data as $column => $value) {
-            if (in_array($column, $this->not_string_attributes ?? [], true)) {
+            if ($value === null) {
+                $values .= 'NULL,';
+            } elseif (in_array($column, $this->not_string_attributes ?? [], true)) {
                 $values .= $value.',';
             } else {
                 $values .= '"'.$value.'",';

@@ -135,7 +135,65 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card card-signup card-plain">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                    <h2 class="modal-title card-title text-center" id="myModalLabel">Pay successfully</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <strong>1. How do I get into the theater ?</strong>
+                                <p>Give staff your QR Code in your ticket to enter.</p>
+                                <strong>2. Where is my ticket ?</strong>
+                                <p>Click your profile on header, choose Order History.</p>
+                                <strong>3. Refund ?</strong>
+                                <p>No, you can't roll back the payment process after you generate a payment.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="picture">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>If you have more questions, don't hesitate to contact us or email us <a href="mailto: tssdh@tdtu.edu.vn">tssdh@tdtu.edu.vn</a>. We're here to help!</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary btn-round" data-dismiss="modal">Sounds good!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php include section('customer-theme.footer') ?>
 </body>
 <?php include section('customer-theme.script') ?>
+<script>
+    const params = (new URL(window.location.href)).searchParams
+    const amount = params.get('vnp_Amount')
+    if (amount !== null) {
+        $.ajax({
+            url: '<?= url('/order/pay/callback') ?>',
+            method: 'POST',
+            data: {
+                bank_code: params.get('vnp_BankCode'),
+                transaction_code: params.get('vnp_BankTranNo'),
+            },
+        }).done(function (data) {
+            const modal = $('#modal')
+            modal.modal('show')
+            modal.on('hidden.bs.modal', function () {
+                window.location.href = '<?= url('/') ?>'
+            })
+        })
+    }
+
+</script>
 </html>

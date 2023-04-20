@@ -22,6 +22,7 @@ Route::get('/order/choose_seat/{id}', [BookTicketController::class, 'processChoo
 Route::get('/order/choose_combo', [BookTicketController::class, 'chooseCombo']);
 Route::post('/order/choose_combo', [BookTicketController::class, 'processChooseCombo']);
 Route::post('/order/pay', [BookTicketController::class, 'pay']);
+Route::post('/order/pay/callback', [BookTicketController::class, 'callback']);
 
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);
 Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlreadyLogin::class);
