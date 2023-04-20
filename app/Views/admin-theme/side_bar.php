@@ -5,21 +5,21 @@
         Tip 3: you can change the color of the sidebar with data-background-color="white | black"
         -->
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="<?= url('admin') ?>" class="simple-text logo-mini">
             MV
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="<?= url('admin') ?>" class="simple-text logo-normal">
             The Moovee
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li>
-                <a href="../dashboard.html">
-                    <i class="material-icons">dashboard</i>
-                    <p> Dashboard </p>
-                </a>
-            </li>
+<!--            <li>-->
+<!--                <a href="../dashboard.html">-->
+<!--                    <i class="material-icons">dashboard</i>-->
+<!--                    <p> Dashboard </p>-->
+<!--                </a>-->
+<!--            </li>-->
             <li <?= toggleActiveMenu('admin/order') ?>>
                 <a href="<?= url('admin/order') ?>">
                     <i class="material-icons">dashboard</i>

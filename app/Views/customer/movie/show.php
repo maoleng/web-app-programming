@@ -13,7 +13,7 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="tab-content">
                         <div class="tab-pane active" id="product-page2">
-                            <img src="<?= $movie->banner ?>"/>
+                            <img src="<?= $movie->bannerPath() ?>"/>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="picture">
-                                <img src="<?= $movie->banner ?>" alt="Thumbnail Image"  class="img-rounded img-responsive">
+                                <img src="<?= $movie->bannerPath() ?>" alt="Thumbnail Image"  class="img-rounded img-responsive">
                                 <p><strong><?= $movie->name ?></strong></p>
                             </div>
                         </div>
