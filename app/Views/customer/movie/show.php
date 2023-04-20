@@ -95,7 +95,6 @@
                             <ul class="nav nav-pills nav-pills-rose">
                                 <li data-type="1" class="btn-choose_type active"><a href="" data-toggle="tab" aria-expanded="true">2D</a></li>
                                 <li data-type="2" class="btn-choose_type"><a href="" data-toggle="tab" aria-expanded="false">3D</a></li>
-                                <li data-type="3" class="btn-choose_type"><a href="" data-toggle="tab" aria-expanded="false">4DX</a></li>
                             </ul>
                         </div>
                     </div>
