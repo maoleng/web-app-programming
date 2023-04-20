@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="text-center">
-    <a style="" href="#pablo" class="btn btn-info btn-round">Continue<div class="ripple-container"></div></a>
+    <a style="" href="<?= url('order/choose_combo') ?>" class="btn btn-info btn-round">Continue<div class="ripple-container"></div></a>
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">

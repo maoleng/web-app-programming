@@ -19,7 +19,9 @@ Route::get('/coming_soon_movie', [HomeController::class, 'comingSoon']);
 Route::post('/order/choose_schedule', [BookTicketController::class, 'chooseSchedule']);
 Route::get('/order/choose_seat', [BookTicketController::class, 'chooseSeat']);
 Route::get('/order/choose_seat/{id}', [BookTicketController::class, 'processChooseSeat']);
-
+Route::get('/order/choose_combo', [BookTicketController::class, 'chooseCombo']);
+Route::post('/order/choose_combo', [BookTicketController::class, 'processChooseCombo']);
+Route::get('/test', function () {dd(session()->all());});
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);
 Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlreadyLogin::class);
 Route::post('/process_login', [AuthController::class, 'processLogin']);
