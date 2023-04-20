@@ -10,7 +10,7 @@ class OrderDetail extends Model
     public string $table = 'order_detail';
 
     protected array $fillable = [
-        'order_id', 'ticket_id', 'admin_id', 'combo_id', 'amount', 'price',
+        'order_id', 'ticket_id', 'combo_id', 'amount', 'price',
     ];
 
 }

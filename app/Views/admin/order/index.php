@@ -19,20 +19,6 @@
                                     <input type="text" class="form-control" placeholder=" Search ">
                                     <span class="material-input"></span>
                                 </div>
-                                <div class="col-sm-6 col-lg-2" style="float: right">
-                                    <a href="" class="dropdown-toggle btn btn-primary btn-round" data-toggle="dropdown">Dropdown
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-left">
-                                        <?php foreach ($status as $key => $each) : ?>
-                                            <li>
-                                                <a href="">
-                                                    <?= $each ?>
-                                                </a>
-                                            </li>
-                                        <?php endforeach ?>
-                                    </ul>
-                                </div>
                             </div>
                             <h4 class="card-title">
                                 <a href="<?= url('admin/order') ?>">Manage Order</a>
@@ -43,8 +29,8 @@
                                     <tr>
                                         <th class="th-description">Name</th>
                                         <th class="th-description">Email</th>
-                                        <th class="th-description">Is Paid</th>
-                                        <th class="th-description">Status</th>
+                                        <th class="th-description">Bank</th>
+                                        <th class="th-description">Transaction Code</th>
                                         <th class="th-description">Total</th>
                                         <th class="th-description">Ordered At</th>
                                         <th class="text-right">Actions</th>
@@ -56,25 +42,8 @@
                                         <tr>
                                         <td class="td-name"><?= $order->name ?></td>
                                         <td><?= $order->email ?></td>
-                                        <td>
-                                            <span data-href="<?= url('admin/order/update_payment')."?id=$order->id" ?>" class="checkbox btn-update_payment <?= (int) $order->is_paid ? 'disabled' : '' ?> ">
-                                                <label>
-                                                    <input <?= (int) $order->is_paid ? 'checked disabled' : '' ?> type="checkbox">
-                                                </label>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="form-group label-floating is-empty">
-                                                <label class="control-label"></label>
-                                                <select data-href="<?= url('admin/order/update_status')."?id=$order->id" ?>" class="btn-update_status selectpicker" data-style="select-with-transition" title="Choose Category" data-size="3">
-                                                    <?php foreach ($status as $key => $each) : ?>
-                                                        <option <?= (string) $key === $order->status ? 'selected' : '' ?> value="<?= $key ?>">
-                                                            <?= $each ?>
-                                                        </option>
-                                                    <?php endforeach ?>
-                                                </select>
-                                            </div>
-                                        </td>
+                                        <td><?= $order->bank_code ?></td>
+                                        <td><?= $order->transaction_code ?></td>
                                         <td><?= prettyMoney($order->total) ?></td>
                                         <td><?= $order->ordered_at ?></td>
                                         <td class="td-actions text-right">
@@ -146,15 +115,6 @@
 <?php include section('admin-theme.script') ?>
 <script>
     <?= alertSuccess() ?>
-    $('.btn-update_payment').on('click', function () {
-        if (! $(this).hasClass('disabled')) {
-            window.location.href = $(this).data('href')
-        }
-    })
-    $('.btn-update_status').on('change', function () {
-        const status = $(this).find(":selected").val();
-        window.location.href = $(this).data('href') + `&status=${status}`
-    })
     $('.btn-show').on('click', function() {
         const url = $(this).data('href')
         $.ajax({
