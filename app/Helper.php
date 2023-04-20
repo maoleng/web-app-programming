@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Movie;
+
 if (! function_exists('toggleActiveMenu')) {
     function toggleActiveMenu($path): string
     {
@@ -105,5 +107,12 @@ if (! function_exists('prettyMoney')) {
     function prettyMoney($money): string
     {
         return number_format($money, 0, '', ',');
+    }
+}
+
+if (! function_exists('getMovieFeed')) {
+    function getMovieFeed(): array
+    {
+        return (new Movie)->limit(8)->get(['banner']);
     }
 }

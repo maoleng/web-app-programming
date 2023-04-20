@@ -97,9 +97,6 @@
             </div>
         </div>
     </div>
-
-
-    <?php include section('customer-theme.footer') ?>
 </body>
 <?php include section('customer-theme.script') ?>
 <script>
