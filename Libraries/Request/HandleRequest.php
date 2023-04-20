@@ -56,9 +56,9 @@ trait HandleRequest
         if (! method_exists($class, $method_name)) {
             abort(Response::HTTP_METHOD_NOT_ALLOWED);
         }
-
         if (isset($arr_action[2])) {
-            require asset($arr_action[2].'.php');
+            $file_name = str_replace('App', 'app', $arr_action[2]).'.php';
+            require asset($file_name);
             $middleware = new $arr_action[2]();
             $middleware->handle();
         }
