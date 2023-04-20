@@ -49,12 +49,15 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="card card-raised card-form-horizontal">
             <?php include section('customer.order.order_information') ?>
-            <div class="card-footer">
-                <div class="text-center">
-                    <a style="" href="#pablo" class="btn btn-success btn-round">Pay with ATM Card<div class="ripple-container"></div></a>
-                    <a style="" href="#pablo" class="btn btn-success btn-round">Pay with International Card<div class="ripple-container"></div></a>
+            <?php if (! empty($chosen_tickets)) { ?>
+                <div class="card-footer">
+                    <form action="<?= url('order/pay') ?>" method="post" class="text-center">
+                        <input type="hidden" name="amount">
+                        <button name="bank_code" value="VNBANK" class="btn btn-success btn-round">Pay with ATM Card<div class="ripple-container"></div></button>
+                        <button name="bank_code" value="INTCARD" class="btn btn-success btn-round">Pay with International Card<div class="ripple-container"></div></button>
+                    </form>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

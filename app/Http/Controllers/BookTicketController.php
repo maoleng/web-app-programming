@@ -83,6 +83,17 @@ class BookTicketController extends Controller
         session()->put('order', $order);
     }
 
+    public function pay(Request $request): void
+    {
+        $bank_code = $request->get('bank_code');
+        $amount = $this->getOrderInformation(session()->get('order'))['total'];
+        $return_url = url('/');
+
+        $payment_url = $this->createPaymentUrl($amount, $bank_code, $return_url);
+
+        redirect()->to($payment_url);
+    }
+
     private function getOrderInformation($order): array
     {
         $tickets = (new Ticket)->raw("
@@ -121,6 +132,62 @@ class BookTicketController extends Controller
             'total' => $tickets_price + $combos_price,
             'str_seats' => implode(', ', $seats),
         ];
+    }
+
+    private function createPaymentUrl($amount, $bank_code, $return_url): string
+    {
+        $vnp_TmnCode = env('VNP_TMNCODE');
+        $vnp_HashSecret = env('VNP_HASH_SECRET');
+        $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
+        $vnp_ReturnUrl = $return_url;
+        $startTime = date('YmdHis');
+        $expire = date('YmdHis', strtotime('+15 minutes', strtotime($startTime)));
+
+        $vnp_TxnRef = random_int(1,10000);
+        $vnp_Amount = $amount;
+        $vnp_Locale = 'vn';
+        $vnp_BankCode = $bank_code;
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+        $inputData = [
+            'vnp_Version' => '2.1.0',
+            'vnp_TmnCode' => $vnp_TmnCode,
+            'vnp_Amount' => $vnp_Amount * 100,
+            'vnp_Command' => 'pay',
+            'vnp_CreateDate' => date('YmdHis'),
+            'vnp_CurrCode' => 'VND',
+            'vnp_IpAddr' => $vnp_IpAddr,
+            'vnp_Locale' => $vnp_Locale,
+            'vnp_OrderInfo' => 'Thanh toan GDnh toan GDnh toan GDnh toan GD:' . $vnp_TxnRef,
+            'vnp_OrderType' => 'other',
+            'vnp_ReturnUrl' => $vnp_ReturnUrl,
+            'vnp_TxnRef' => $vnp_TxnRef,
+            'vnp_ExpireDate'=>$expire
+        ];
+
+        if (isset($vnp_BankCode) && $vnp_BankCode !== '') {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+
+        ksort($inputData);
+        $query = '';
+        $i = 0;
+        $hash_data = '';
+        foreach ($inputData as $key => $value) {
+            if ($i === 1) {
+                $hash_data .= '&' . urlencode($key) . '=' . urlencode($value);
+            } else {
+                $hash_data .= urlencode($key) . '=' . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . '=' . urlencode($value) . '&';
+        }
+
+        $vnp_Url .= '?'.$query;
+        $vnpSecureHash =   hash_hmac('sha512', $hash_data, $vnp_HashSecret);
+        $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+
+        return $vnp_Url;
     }
 
 }
