@@ -124,7 +124,6 @@ class BookTicketController extends Controller
                 'price' => $ticket->price,
             ]);
         }
-        (new Ticket)->whereIn('id', $order_info['chosen_tickets'])->update(['is_used' => 1]);
 
         $combos = (new Combo)->whereIn('id', array_keys($order_info['chosen_combos']))->get();
         foreach ($combos as $combo) {
