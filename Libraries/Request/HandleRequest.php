@@ -43,14 +43,14 @@ trait HandleRequest
 
         // Nếu action là 1 hàm của Controller
         $arr_action = explode(',', $routes[$key]);
-        $controller_name = str_replace('App\Http\Controllers\\', '', $arr_action[0]);
+        $controller_name = str_replace('app\Http\Controllers\\', '', $arr_action[0]);
         $method_name = $arr_action[1];
         $controller_path = asset('/app/Http/Controllers/'.$controller_name.'.php');
         if (! file_exists($controller_path)) {
             abort(Response::HTTP_NOT_FOUND);
         }
 
-        $class_name = '\App\Http\Controllers\\'.$controller_name;
+        $class_name = '\app\Http\Controllers\\'.$controller_name;
         require asset($class_name.'.php');
         $class = new $class_name();
         if (! method_exists($class, $method_name)) {
