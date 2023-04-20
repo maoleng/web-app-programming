@@ -26,9 +26,6 @@
                                     <a href="<?= $movie->url() ?>" class="btn btn-rose btn-round">
                                         <span class="material-icons">visibility</span> View
                                     </a>
-                                    <a href="#pablo" class="btn btn-rose btn-round">
-                                        <span class="material-icons">sell</span> Book
-                                    </a>
                                 </div>
                             </div>
                         </div>
