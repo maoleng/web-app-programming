@@ -119,6 +119,11 @@ abstract class Model
         return $this;
     }
 
+    public function insert($records = []): bool
+    {
+        return $this->callInsert($records, $this->table);
+    }
+
     public function orderBy($column, $value = 'ASC'): Query
     {
         $this->validateFillable([$column]);

@@ -135,6 +135,22 @@ trait Builder
         return $this->database()->insert_id;
     }
 
+    public function callInsert($records = [], $table = null): bool
+    {
+        if (empty($records)) {
+            return false;
+        }
+        $record_values = [];
+        foreach ($records as $record) {
+            $record_values[] = $this->getCreateValues($record);
+        }
+        $columns = '('.implode(', ', array_keys($records[0])).')';
+        $query = 'INSERT INTO '.$table.' '.$columns.' VALUES '.implode(', ', $record_values);
+        $this->database()->query($query);
+
+        return true;
+    }
+
     public function callUpdate($data = []): bool
     {
         $data = cleanData($data);
