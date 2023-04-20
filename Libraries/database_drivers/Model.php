@@ -5,6 +5,7 @@ namespace Libraries\database_drivers;
 use JetBrains\PhpStorm\NoReturn;
 use Libraries\database_drivers\mysql\Query;
 
+#[\AllowDynamicProperties]
 abstract class Model
 {
     use BaseBuilder;
