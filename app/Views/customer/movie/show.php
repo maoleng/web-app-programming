@@ -32,7 +32,11 @@
                     </div>
                     <div class="row text-right">
                         <a href="<?= $movie->trailer ?>" target="_blank" class="btn btn-rose btn-round">Trailer &nbsp;<span class="material-icons">smart_display</span></a>
-                        <button data-toggle="modal" data-target="#movie" class="btn btn-rose btn-round">Book &nbsp;<span class="material-icons">sell</span></button>
+                        <?php if (authed() === null) { ?>
+                            <a href="<?= $movie->trailer ?>" target="_blank" class="btn btn-rose btn-round">Login For Booking&nbsp;<span class="material-icons">login</span></a>
+                        <?php } else { ?>
+                            <button data-toggle="modal" data-target="#movie" class="btn btn-rose btn-round">Book &nbsp;<span class="material-icons">sell</span></button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
