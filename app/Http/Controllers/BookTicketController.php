@@ -140,6 +140,15 @@ class BookTicketController extends Controller
         session()->forget('order');
     }
 
+    public function history()
+    {
+        $orders = (new Order)->where('customer_id', authed()->id)->paginate(5);
+
+        return view('customer.order.history', [
+            'orders' => $orders,
+        ]);
+    }
+
     private function getOrderInformation($order): array
     {
         $tickets = (new Ticket)->raw("

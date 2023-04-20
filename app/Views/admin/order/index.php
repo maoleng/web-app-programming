@@ -114,7 +114,6 @@
 </div>
 <?php include section('admin-theme.script') ?>
 <script>
-    <?= alertSuccess() ?>
     $('.btn-show').on('click', function() {
         const url = $(this).data('href')
         $.ajax({
@@ -123,17 +122,18 @@
             const tbody = $('#modal-tbody')
             tbody.empty()
             data.forEach(function (each) {
+                let name = each.movie_name ?? each.combo_name
+                let image = each.image ?? 'https://static4.depositphotos.com/1012407/370/v/950/depositphotos_3707681-stock-illustration-yellow-ticket.jpg'
+
                 tbody.append(`
                     <tr>
                         <td>
                             <div class="img-container">
-                                <img src="https://static4.depositphotos.com/1012407/370/v/950/depositphotos_3707681-stock-illustration-yellow-ticket.jpg" alt="...">
+                                <img src="${image}" alt="...">
                             </div>
                         </td>
                         <td class="td-name">
-                            <span>${each.name}</span>
-                            <br />
-                            <small>${each.category}</small>
+                            <span>${name}</span>
                         </td>
                         <td class="td-number text-right">
                             ${prettyMoney(each.price)}
@@ -145,18 +145,20 @@
                             ${prettyMoney(each.sum)}
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td class="td-total">
-                            Total
-                        </td>
-                        <td colspan="2" class="td-price">
-                            ${prettyMoney(each.total)}
-                        </td>
-                        <td></td>
-                    </tr>
                 `)
             })
+            tbody.append(`
+                <tr>
+                    <td colspan="3"></td>
+                    <td class="td-total">
+                        Total
+                    </td>
+                    <td colspan="2" class="td-price">
+                        ${prettyMoney(data[0].total)}
+                    </td>
+                    <td></td>
+                </tr>
+            `)
         })
     })
 
