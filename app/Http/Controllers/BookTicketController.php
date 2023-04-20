@@ -46,7 +46,7 @@ class BookTicketController extends Controller
     public function chooseCombo()
     {
         $order = session()->get('order');
-        if (empty($order)) {
+        if (empty($order['chosen_tickets'])) {
             redirect()->back();
         }
         $order_info = $this->getOrderInformation($order);
@@ -70,7 +70,7 @@ class BookTicketController extends Controller
 
         $order = session()->get('order');
 
-        $combos = $order['combos'];
+        $combos = $order['combos'] ?? [];
         $amount = $combos[$data['combo_id']] ?? null;
         if ($data['type'] === 'increase') {
             $combos[$data['combo_id']] = $amount === null ? 1 : $amount + 1;
@@ -100,7 +100,7 @@ class BookTicketController extends Controller
         $tickets_price = 0;
         $seats = [];
         foreach ($tickets as $ticket) {
-            if (in_array((int) $ticket->id, $order['chosen_tickets'], true)) {
+            if (in_array((int) $ticket->id, $order['chosen_tickets'] ?? [], true)) {
                 $tickets_price += $ticket->price;
                 $seats[] = $ticket->seatName();
             }
