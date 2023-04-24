@@ -84,7 +84,9 @@ class MovieController extends Controller
         ];
 
         if ($data['banner'] !== null) {
-            unlink($movie->banner);
+            if (! str_starts_with($movie->banner, 'http')) {
+                unlink($movie->banner);
+            }
             $extension = pathinfo(basename($data['banner']['name']),PATHINFO_EXTENSION);
             $path = "public/storage/movies/$movie->id.$extension";
             move_uploaded_file($data['banner']['tmp_name'], $path);
