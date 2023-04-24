@@ -10,7 +10,7 @@ class User extends Model
     public string $table = 'users';
 
     protected array $fillable = [
-        'name', 'email', 'password', 'is_admin', 'created_at',
+        'name', 'email', 'password', 'active', 'is_admin', 'created_at', 'verify_code', 'verified_at'
     ];
 
     protected array $not_string_attributes = [

@@ -22,8 +22,9 @@ Route::get('/coming_soon_movie', [HomeController::class, 'comingSoon']);
 
 Route::get('/login', [AuthController::class, 'login'])->middleware(IfAlreadyLogin::class);
 Route::get('/register', [AuthController::class, 'register'])->middleware(IfAlreadyLogin::class);
-Route::post('/process_login', [AuthController::class, 'processLogin'])->middleware(IfAlreadyLogin::class);
 Route::post('/process_register', [AuthController::class, 'processRegister'])->middleware(IfAlreadyLogin::class);
+Route::get('/verify_register/{code}', [AuthController::class, 'verifyRegister'])->middleware(IfAlreadyLogin::class);
+Route::post('/process_login', [AuthController::class, 'processLogin'])->middleware(IfAlreadyLogin::class);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(MustLogin::class);
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware(MustLogin::class);

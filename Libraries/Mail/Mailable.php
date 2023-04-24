@@ -10,7 +10,9 @@ abstract class Mailable
 {
     private PHPMailer $mail;
 
-    public function __construct()
+    abstract protected function handle(): Mailable;
+
+    public function send(): bool
     {
         $this->mail = new PHPMailer(true);
         $this->mail->SMTPDebug = SMTP::DEBUG_OFF;
@@ -23,21 +25,10 @@ abstract class Mailable
         $this->mail->Password = env('MAIL_PASSWORD');
 
         $this->handle();
-    }
 
-    abstract protected function handle(): Mailable;
-
-    /**
-     * @throws Exception
-     */
-    public function send(): bool
-    {
         return $this->mail->send();
     }
 
-    /**
-     * @throws Exception
-     */
     public function to($email): static
     {
         $this->mail->AddAddress($email);
@@ -45,9 +36,6 @@ abstract class Mailable
         return $this;
     }
 
-    /**
-     * @throws Exception
-     */
     public function from($email, $name = ''): static
     {
         $this->mail->setFrom($email, $name);
@@ -73,9 +61,6 @@ abstract class Mailable
         return $this;
     }
 
-    /**
-     * @throws Exception
-     */
     public function bcc($emails): static
     {
         foreach ($emails as $email) {
@@ -85,9 +70,6 @@ abstract class Mailable
         return $this;
     }
 
-    /**
-     * @throws Exception
-     */
     public function cc($emails): static
     {
         foreach ($emails as $email) {

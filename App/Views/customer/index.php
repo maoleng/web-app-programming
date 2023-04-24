@@ -173,6 +173,8 @@
 </body>
 <?php include section('customer-theme.script') ?>
 <script>
+    <?= alertSuccessCustomer() ?>
+    <?= alertErrorCustomer() ?>
     const params = (new URL(window.location.href)).searchParams
     const amount = params.get('vnp_Amount')
     if (amount !== null) {
