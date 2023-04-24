@@ -94,6 +94,7 @@
 <?php include section('admin-theme.script') ?>
 <script>
     <?= alertSuccess() ?>
+    <?= alertError() ?>
     $('.btn-delete').on('click', function(e) {
         const form = $(this).parent()
         swal({

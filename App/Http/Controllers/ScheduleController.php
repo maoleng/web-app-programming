@@ -91,7 +91,13 @@ class ScheduleController extends Controller
 
     public function destroy(Request $request, $id): void
     {
-        (new Schedule)->findOrFail($id)->delete();
+        $schedule = (new Schedule)->findOrFail($id);
+
+        try {
+            $schedule->delete();
+        } catch (\Exception) {
+            session()->flash('errors', ['Can not delete movie because there are tickets for this schedule']);
+        }
 
         session()->flash('success', 'Delete schedule successfully');
     }

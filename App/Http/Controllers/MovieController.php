@@ -101,8 +101,14 @@ class MovieController extends Controller
     {
         $movie = (new Movie)->findOrFail($id);
 
-        $movie->delete();
-        unlink($movie->banner);
+        try {
+            $movie->delete();
+        } catch (\Exception) {
+            redirectBackWithError('Can not delete movie because it is scheduled');
+        }
+        if (! str_starts_with($movie->banner, 'http')) {
+            unlink($movie->banner);
+        }
 
         redirectWithSuccess('/admin/movie', 'Removed movie successfully');
     }

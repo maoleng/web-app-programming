@@ -196,7 +196,7 @@
         $.ajax({
             url: href,
             method: 'POST',
-        }).done(function () {
+        }).done(function (e) {
             window.location.reload()
         })
     })
