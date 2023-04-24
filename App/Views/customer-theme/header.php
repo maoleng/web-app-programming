@@ -40,11 +40,19 @@
                                     <span class="material-icons">account_circle</span> Profile
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?= url('order/history') ?>">
-                                    <span class="material-icons">history</span> Order History
-                                </a>
-                            </li>
+                            <?php if ((int) authed()->is_admin) { ?>
+                                <li>
+                                    <a href="<?= url('admin') ?>">
+                                        <span class="material-icons">admin_panel_settings</span> Manage System
+                                    </a>
+                                </li>
+                            <?php } else { ?>
+                                <li>
+                                    <a href="<?= url('order/history') ?>">
+                                        <span class="material-icons">history</span> Order History
+                                    </a>
+                                </li>
+                            <?php } ?>
                             <li>
                                 <a href="<?= url('logout') ?>">
                                     <span class="material-icons">logout</span> Log out
