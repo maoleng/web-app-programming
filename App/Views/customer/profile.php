@@ -33,15 +33,15 @@
                         <div class="hidden" id="div-change_password">
                             <div class="form-group label-floating">
                                 <label class="control-label">Current password</label>
-                                <input type="text" name="password" class="form-control"/>
+                                <input type="password" name="password" class="form-control"/>
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">New password</label>
-                                <input type="text" name="new_password" class="form-control"/>
+                                <input type="password" name="new_password" class="form-control"/>
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">Retype new password</label>
-                                <input type="text" name="re_password" class="form-control"/>
+                                <input type="password" name="re_password" class="form-control"/>
                             </div>
                         </div>
 
