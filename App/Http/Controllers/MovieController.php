@@ -11,7 +11,21 @@ class MovieController extends Controller
 
     public function index(Request $request)
     {
-        $movies = (new Movie)->orderByDesc('created_at')->paginate(5);
+        $q = $request->get('q');
+        $builder = 'SELECT * FROM movies ';
+        if (isset($q)) {
+            $builder .= "WHERE
+                name LIKE '%$q%' OR
+                description LIKE '%$q%' OR
+                duration LIKE '%$q%' OR
+                directors LIKE '%$q%' OR
+                actors LIKE '%$q%' OR
+                premiered_date LIKE '%$q%' OR
+                banner LIKE '%$q%' OR
+                trailer LIKE '%$q%'
+            ";
+        }
+        $movies = (new Movie)->rawPaginate("$builder ORDER BY created_at DESC", 15);
 
         return view('admin.movie.index', [
             'movies' => $movies,

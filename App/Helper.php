@@ -193,3 +193,16 @@ if (! function_exists('getMovieFeed')) {
         return (new Movie)->limit(8)->get(['banner']);
     }
 }
+
+if (! function_exists('appendQueries')) {
+    function appendQueries(): string
+    {
+        $queries = request()->except(['page']);
+        $str_q = '';
+        foreach ($queries as $key => $value) {
+            $str_q .= "&$key=$value";
+        }
+
+        return $str_q;
+    }
+}

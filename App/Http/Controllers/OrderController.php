@@ -8,13 +8,25 @@ use Libraries\Request\Request;
 class OrderController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = (new Order)->rawPaginate('
+        $q = $request->get('q');
+        $builder = '
             SELECT orders.*, users.name, users.email FROM orders 
-                LEFT JOIN users ON orders.customer_id = users.id 
-            ORDER BY ordered_at DESC'
-        , 5);
+            LEFT JOIN users ON orders.customer_id = users.id
+        ';
+        if (isset($q)) {
+            $builder .= "WHERE
+                users.id LIKE '%$q%' OR
+                users.name LIKE '%$q%' OR
+                users.email LIKE '%$q%' OR
+                orders.id LIKE '%$q%' OR
+                orders.total LIKE '%$q%' OR
+                orders.bank_code LIKE '%$q%' OR
+                orders.transaction_code LIKE '%$q%'
+            ";
+        }
+        $orders = (new Order)->rawPaginate("$builder ORDER BY ordered_at DESC", 15);
 
         return view('admin.order.index', [
             'orders' => $orders,

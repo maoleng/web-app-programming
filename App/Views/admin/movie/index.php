@@ -16,7 +16,7 @@
                         <div class="card-content">
                             <div class="row">
                                 <div class="col-sm-6 col-lg-2" style="float: right">
-                                    <input type="text" class="form-control" placeholder=" Search ">
+                                    <input value="<?= request()->get('q') ?>" id="i-search" type="text" class="form-control" placeholder=" Search ">
                                     <span class="material-input"></span>
                                 </div>
                             </div>
@@ -72,15 +72,25 @@
                             </div>
                             <ul class="pagination pagination-primary">
                                 <li>
-                                    <a href="<?= url($movies['meta']['prev_page_url']) ?>"> prev</a>
+                                    <a href="<?= url($movies['meta']['prev_page_url']).appendQueries() ?>"> prev</a>
                                 </li>
-                                <li class="active">
-                                    <a href="javascript:void(0);">
-                                        <?= $movies['meta']['current_page'] ?>
-                                    </a>
-                                </li>
+                                <?php for ($i = 1; $i <= $movies['meta']['last_page']; $i++): ?>
+                                    <?php if ($i === $movies['meta']['current_page']) { ?>
+                                        <li class="active">
+                                            <a href="javascript:void(0);">
+                                                <?= $movies['meta']['current_page'] ?>
+                                            </a>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li>
+                                            <a href="<?= url($movies['meta']['first_page_url'])."?page=$i".appendQueries() ?>">
+                                                <?= $i ?>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                <?php endfor ?>
                                 <li>
-                                    <a href="<?= url($movies['meta']['next_page_url']) ?>"> prev</a>
+                                    <a href="<?= url($movies['meta']['next_page_url']).appendQueries() ?>"> prev</a>
                                 </li>
                             </ul>
                         </div>
@@ -92,6 +102,7 @@
     </div>
 </div>
 <?php include section('admin-theme.script') ?>
+<script src="<?= url('public/assets/js/handle_search.js') ?>"></script>
 <script>
     <?= alertSuccess() ?>
     <?= alertError() ?>
