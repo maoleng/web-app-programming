@@ -1,16 +1,3 @@
-/*! =========================================================
- *
- * Material Kit PRO - V1.2.1
- *
- * =========================================================
- *
- * Product Page: https://www.creative-tim.com/product/material-kit-pro
- * Available with purchase of license from http://www.creative-tim.com/product/material-kit-pro
- * Copyright 2017 Creative Tim (https://www.creative-tim.com)
- * License Creative Tim (https://www.creative-tim.com/license)
- *
- * ========================================================= */
-
 var big_image;
 
  $(document).ready(function(){
