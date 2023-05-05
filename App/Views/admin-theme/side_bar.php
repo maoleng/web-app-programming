@@ -44,30 +44,30 @@
                     <p> Customer </p>
                 </a>
             </li>
-            <li>
-                <a data-toggle="collapse" href="#formsExamples">
-                    <i class="material-icons">content_paste</i>
-                    <p> Statistic
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="formsExamples">
-                    <ul class="nav">
-                        <li>
-                            <a href="../forms/regular.html">
-                                <span class="sidebar-mini"> RF </span>
-                                <span class="sidebar-normal"> Revenue </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../forms/extended.html">
-                                <span class="sidebar-mini"> EF </span>
-                                <span class="sidebar-normal"> Movie </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+<!--            <li>-->
+<!--                <a data-toggle="collapse" href="#formsExamples">-->
+<!--                    <i class="material-icons">content_paste</i>-->
+<!--                    <p> Statistic-->
+<!--                        <b class="caret"></b>-->
+<!--                    </p>-->
+<!--                </a>-->
+<!--                <div class="collapse" id="formsExamples">-->
+<!--                    <ul class="nav">-->
+<!--                        <li>-->
+<!--                            <a href="../forms/regular.html">-->
+<!--                                <span class="sidebar-mini"> RF </span>-->
+<!--                                <span class="sidebar-normal"> Revenue </span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="../forms/extended.html">-->
+<!--                                <span class="sidebar-mini"> EF </span>-->
+<!--                                <span class="sidebar-normal"> Movie </span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </li>-->
         </ul>
     </div>
 </div>

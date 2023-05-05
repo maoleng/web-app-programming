@@ -19,36 +19,17 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">notifications</i>
-                        <span class="notification">5</span>
+                        <i class="material-icons">person</i>
                         <p class="hidden-lg hidden-md">
-                            Notifications
+                            User
                             <b class="caret"></b>
                         </p>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Mike John responded to your email</a>
-                        </li>
-                        <li>
-                            <a href="#">You have 5 new tasks</a>
-                        </li>
-                        <li>
-                            <a href="#">You're now friend with Andrew</a>
-                        </li>
-                        <li>
-                            <a href="#">Another Notification</a>
-                        </li>
-                        <li>
-                            <a href="#">Another One</a>
+                            <a href="<?= url('/logout') ?>">Log out</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">person</i>
-                        <p class="hidden-lg hidden-md">Profile</p>
-                    </a>
                 </li>
                 <li class="separator hidden-lg hidden-md"></li>
             </ul>
