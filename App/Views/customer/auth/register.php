@@ -41,7 +41,6 @@
                                 <input name="re_password" type="password" placeholder="Retype password..." class="form-control" />
                             </div>
                         </div>
-                        <p class="description text-center">Forgor password ? <a href="">Reset password</a></p>
                         <div class="footer text-center">
                             <button class="btn btn-primary btn-simple btn-wd btn-lg">Login</button>
                         </div>

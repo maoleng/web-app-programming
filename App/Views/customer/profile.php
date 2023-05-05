@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="submit text-center">
-                            <input type="submit" class="btn btn-primary btn-raised btn-round" value="Contact Us" />
+                            <input type="submit" class="btn btn-primary btn-raised btn-round" value="Change" />
                         </div>
                     </form>
                 </div>
