@@ -82,6 +82,7 @@ trait Builder
         $query .= ' LIMIT '.$limit.' OFFSET '.$offset;
 
         $query_count = preg_replace('/SELECT .* FROM/', 'SELECT count(*) FROM', $query);
+        $query_count = preg_replace('/OFFSET \d+/', '', $query_count);
 
         return [
             (int) $this->database()->query($query_count)->fetch_row()[0],
