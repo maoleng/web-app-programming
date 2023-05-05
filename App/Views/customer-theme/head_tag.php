@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
     <link href="<?= url('public/assets/css/bootstrap.min.css') ?>" rel="stylesheet" />
-    <link href="<?= url('public/assets/css/material-kit.css') ?>" rel="stylesheet"/>
+    <link href="<?= url('public/assets/css/customer-style.css') ?>" rel="stylesheet"/>
 </head>
 
 

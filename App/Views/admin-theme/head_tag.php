@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width" />
     <!-- CSS Files -->
     <link href="<?= url('public/assets/css/bootstrap.min.css') ?>" rel="stylesheet" />
-    <link href="<?= url('public/assets/css/material-dashboard.css') ?>" rel="stylesheet" />
+    <link href="<?= url('public/assets/css/admin-style.css') ?>" rel="stylesheet" />
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
