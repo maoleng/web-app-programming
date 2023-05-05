@@ -51,8 +51,8 @@ class HomeController extends Controller
     public function show(Request $request, $name)
     {
         $movie = (new Movie)->raw("
-            SELECT *, REPLACE(LOWER(name), ' ', '-') FROM movies
-            WHERE REPLACE(LOWER(name), ' ', '-') = '$name.'
+            SELECT * FROM movies
+            WHERE REPLACE(REPLACE(LOWER(name), ' ', '-'), '.', '') = '$name'
         ")[0] ?? null;
         if (empty($movie)) {
             abort(404);
