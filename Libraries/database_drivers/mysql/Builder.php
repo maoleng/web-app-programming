@@ -81,7 +81,12 @@ trait Builder
         $query .= $this->str_order_by ?? '';
         $query .= ' LIMIT '.$limit.' OFFSET '.$offset;
 
-        return $this->database()->query($query)->fetch_all(MYSQLI_ASSOC);
+        $query_count = preg_replace('/SELECT .* FROM/', 'SELECT count(*) FROM', $query);
+
+        return [
+            (int) $this->database()->query($query_count)->fetch_row()[0],
+            $this->database()->query($query)->fetch_all(MYSQLI_ASSOC),
+        ];
     }
 
     public function callOrderBy($column, $values, $model): Query

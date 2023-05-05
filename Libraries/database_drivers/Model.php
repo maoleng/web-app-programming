@@ -166,14 +166,13 @@ abstract class Model
         } elseif ($page <= 0) {
             $page = 1;
         }
-        $rows = $this->callPaginate($query, $per_page, ($page - 1) * $per_page);
+        [$total, $rows] = $this->callPaginate($query, $per_page, ($page - 1) * $per_page);
         $result = [];
         foreach ($rows as $row) {
             $model = clone $this;
             $model->setAttributes($model, $row);
             $result[] = $model;
         }
-        $total = $this->count();
         $last_page = (int) ceil($total / $per_page);
 
         return [
