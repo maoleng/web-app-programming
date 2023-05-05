@@ -14,7 +14,7 @@
                     <div class="col-md-3">
                         <div class="card card-product card-plain">
                             <div class="card-image">
-                                <a href="#">
+                                <a href="<?= $movie->url() ?>">
                                     <img src="<?= $movie->bannerPath() ?>" alt="" />
                                 </a>
                             </div>
