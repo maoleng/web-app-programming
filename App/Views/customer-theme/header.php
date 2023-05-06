@@ -14,12 +14,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="<?= url('now_showing_movie') ?>">
-                        <i class="material-icons">apps</i> Now Showing Movie
+                        <i class="material-icons">movies</i> Now Showing Movie
                     </a>
                 </li>
                 <li>
                     <a href="<?= url('coming_soon_movie') ?>">
-                        <i class="material-icons">apps</i> Coming Soon Movie
+                        <i class="material-icons">event
+                        </i> Coming Soon Movie
                     </a>
                 </li>
                 <?php if (authed() === null) { ?>
@@ -40,7 +41,7 @@
                                     <span class="material-icons">account_circle</span> Profile
                                 </a>
                             </li>
-                            <?php if ((int) authed()->is_admin) { ?>
+                            <?php if ((int)authed()->is_admin) { ?>
                                 <li>
                                     <a href="<?= url('admin') ?>">
                                         <span class="material-icons">admin_panel_settings</span> Manage System

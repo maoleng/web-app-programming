@@ -22,25 +22,25 @@
 <!--            </li>-->
             <li <?= toggleActiveMenu('admin/order') ?>>
                 <a href="<?= url('admin/order') ?>">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">list_alt</i>
                     <p> Order </p>
                 </a>
             </li>
             <li <?= toggleActiveMenu('admin/schedule') ?>>
                 <a href="<?= url('admin/schedule') ?>">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">schedule</i>
                     <p> Schedule </p>
                 </a>
             </li>
             <li <?= toggleActiveMenu('admin/movie') ?>>
                 <a href="<?= url('admin/movie') ?>">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">movie</i>
                     <p> Movie </p>
                 </a>
             </li>
             <li <?= toggleActiveMenu('admin/customer') ?>>
                 <a href="<?= url('admin/customer') ?>">
-                    <i class="material-icons">dashboard</i>
+                    <i class="material-icons">group</i>
                     <p> Customer </p>
                 </a>
             </li>

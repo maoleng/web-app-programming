@@ -15,15 +15,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <div class="page-header" style="background-image: url('https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_205.jpg');">
+                    <div class="page-header" style="background-image: url('https://i.postimg.cc/7YHxwG5d/Promotion-buy-2-tickets-get-1-free-combo-of-corn-and-water-2.png');">
                     </div>
                 </div>
                 <div class="item">
-                    <div class="page-header" style="background-image: url('https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/c/g/cgv-q2_980x448_1.jpg');">
+                    <div class="page-header" style="background-image: url('https://i.postimg.cc/8Cz8dKcp/Promotion-buy-2-tickets-get-1-free-combo-of-corn-and-water-1.png');">
                     </div>
                 </div>
                 <div class="item">
-                    <div class="page-header" style="background-image: url('https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980wx448h_27.jpg');">
+                    <div class="page-header" style="background-image: url('https://i.postimg.cc/mgqRTTtM/Ronaldo-Dogoku-Great-Dragon-Battle.png');">
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="title">Why THE CEENEMA is the best</h2>
-                    <h5 class="description">Inspired by the business class seats on the plane, the GOLD CLASS theater was born to bring a luxurious and classy movie space to moviegoers. GOLD CLASS is also the perfect choice for special events to create wonderful, unforgettable memories.</h5>
+                    <h5 class="text-dark">Inspired by the business class seats on the plane, the GOLD CLASS theater was born to bring a luxurious and classy movie space to moviegoers. GOLD CLASS is also the perfect choice for special events to create wonderful, unforgettable memories. Diversify services and provide a great experience</h5>
                 </div>
                 <div class="col-md-8 col-md-offset-2">
                     <!-- Carousel Card -->
@@ -100,19 +100,19 @@
                                     <div class="item active">
                                         <img src="public/assets/img/bg2.jpg" alt="Awesome Image">
                                         <div class="carousel-caption">
-                                            <h4><i class="material-icons">location_on</i> Yellowstone National Park, United States</h4>
+                                            <h4><i class="material-icons">location_on</i> modern movie space</h4>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <img src="public/assets/img/bg3.jpg" alt="Awesome Image">
                                         <div class="carousel-caption">
-                                            <h4><i class="material-icons">location_on</i> Somewhere Beyond, United States</h4>
+                                            <h4><i class="material-icons">location_on</i>provide the best service</h4>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <img src="public/assets/img/bg.jpg" alt="Awesome Image">
                                         <div class="carousel-caption">
-                                            <h4><i class="material-icons">location_on</i> Yellowstone National Park, United States</h4>
+                                            <h4><i class="material-icons">location_on</i> Diversify services and provide a great experience</h4>
                                         </div>
                                     </div>
                                 </div>
