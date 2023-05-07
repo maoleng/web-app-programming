@@ -52,7 +52,7 @@ class HomeController extends Controller
     {
         $movie = (new Movie)->raw("
             SELECT * FROM movies
-            WHERE REPLACE(REPLACE(LOWER(name), ' ', '-'), '.', '') = '$name'
+            WHERE REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LOWER(NAME), ' ', '-'), '.', ''), '(', ''), ')', ''), ':', '') = '$name'
         ")[0] ?? null;
         if (empty($movie)) {
             abort(404);
@@ -66,7 +66,7 @@ class HomeController extends Controller
             $started_at = $schedule->startedAt();
             $show_dates[$started_at->format('m-d')][$schedule->id] = $started_at->format('H:i');
         }
-//dd($show_dates);
+
         return view('customer.movie.show', [
             'movie' => $movie,
             'show_dates' => $show_dates,
