@@ -31,7 +31,7 @@ class TicketController extends Controller
                 [$status, $message] = [false, 'Ticket is not buy'];
             } elseif ($ticket->is_used) {
                 [$status, $message] = [false, 'Ticket is already used'];
-            } elseif (Carbon::make($ticket->started_at)->subMinutes(30)->lt(now())) {
+            } elseif (Carbon::make($ticket->started_at)->subMinutes(30)->gt(now())) {
                 [$status, $message] = [false, 'Should not earlier than 30 minutes'];
             } elseif (Carbon::make($ticket->ended_at)->lt(now())) {
                 [$status, $message] = [false, 'Film is ended'];
