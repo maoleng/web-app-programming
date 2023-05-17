@@ -9,6 +9,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TicketController;
 use App\Http\Middlewares\AdminAuthenticate;
 use App\Http\Middlewares\IfAlreadyLogin;
 use App\Http\Middlewares\MustLogin;
@@ -59,3 +60,5 @@ Route::post('/admin/movie/update/{id}', [MovieController::class, 'update'])->mid
 Route::post('/admin/movie/destroy/{id}', [MovieController::class, 'destroy'])->middleware(AdminAuthenticate::class);
 
 Route::get('/admin/customer', [CustomerController::class, 'index'])->middleware(AdminAuthenticate::class);
+
+Route::get('/admin/ticket/verify/{id}', [TicketController::class, 'verify']);
