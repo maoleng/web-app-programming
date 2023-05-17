@@ -18,7 +18,7 @@ class TicketController extends Controller
             [$status, $message] = [false, 'Not found ticket'];
         } else {
             $ticket = (new Ticket)->raw("
-                SELECT tickets.*, users.name as `customer_name`, movies.name as `movie_name`, schedules.ended_at
+                SELECT tickets.*, users.name as `customer_name`, movies.name as `movie_name`, schedules.ended_at, schedules.started_at
                 FROM tickets
                     LEFT JOIN order_detail ON order_detail.ticket_id = tickets.id
                     LEFT JOIN orders ON orders.id = order_detail.order_id
@@ -31,6 +31,8 @@ class TicketController extends Controller
                 [$status, $message] = [false, 'Ticket is not buy'];
             } elseif ($ticket->is_used) {
                 [$status, $message] = [false, 'Ticket is already used'];
+            } elseif (Carbon::make($ticket->started_at)->subMinutes(30)->lt(now())) {
+                [$status, $message] = [false, 'Should not earlier than 30 minutes'];
             } elseif (Carbon::make($ticket->ended_at)->lt(now())) {
                 [$status, $message] = [false, 'Film is ended'];
             } else {
