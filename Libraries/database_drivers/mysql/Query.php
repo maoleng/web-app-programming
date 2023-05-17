@@ -134,14 +134,13 @@ class Query
         } elseif ($page <= 0) {
             $page = 1;
         }
-        $rows = $this->callPaginate("SELECT * FROM {$this->model->table}", $per_page, ($page - 1) * $per_page);
+        [$total, $rows] = $this->callPaginate("SELECT * FROM {$this->model->table}", $per_page, ($page - 1) * $per_page);
         $result = [];
         foreach ($rows as $row) {
             $model = clone $this->model;
             $model->setAttributes($model, $row);
             $result[] = $model;
         }
-        $total = $this->count();
         $last_page = (int) ceil($total / $per_page);
 
         return [
