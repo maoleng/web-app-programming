@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <h2 class="title"> <?= $movie->name ?> </h2>
-                    <h3 class="main-price">$335</h3>
+                    <h3 class="main-price">$ 50,000 ~ 100,000</h3>
                     <div id="acordeon">
                         <div class="panel-group" id="accordion">
                             <p><b>Description: </b><?= $movie->description ?></p>
